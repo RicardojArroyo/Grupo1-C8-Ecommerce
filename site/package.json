@@ -1,0 +1,19 @@
+{
+  "name": "sprint-2",
+  "version": "1.0.0",
+  "description": "Este e-comerce será el medio digital para vender muebles de oficina y para el hogar. Está dirigido a todo público con poder de compra, debido a la amplia variedad de muebles que se ofrecen. El equipo de trabajo está formado por Antonio Armando Alvarado de 36 años, Ricardo J. Arroyo de 48 años y Santiago Germán Juarez de 27 años, siendo los tres estudiantes del curso de Full Stack.",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antonio Alvarado, Ricardo Arroyo, Santiago German Juarez",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "nodemon": "^2.0.12",
+    "to": "^0.2.9",
+    "update": "^0.7.4"
+  }
+}

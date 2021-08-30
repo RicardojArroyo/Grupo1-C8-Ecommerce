@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('partials/head.ejs') %>
+<body>
+    <%- include('partials/header.ejs') %>
+    <main class="admin-main">
+        <div class="container">
+            <h2>Crear producto</h2>
+            <form action="/admin" method="POST">
+                <div class="input-form">
+                    <label for="productid">Id del producto: </label>
+                    <input type="text" name="productId" id='productId'>
+                </div>
+                <div class="input-form">
+                    <label for="productName">Nombre del producto: </label>
+                    <input type="text" name="productName" id='productName'>
+                </div>
+                <div class="input-form">
+                    <label for="price">Precio: </label>
+                    <input type="text" name="productprice" id='productPrice'>
+                </div>
+                <div class="input-form">
+                    <label for="description">Descripción: </label>
+                    <textarea name="description" id='description'></textarea>
+                </div>
+                <div class="input-form">
+                    <label>Categoría: </label>
+                    <select name="category" id="">
+                        <option value="#1">Cocina</option>
+                        <option value="#2">Comedor</option>
+                        <option value="#3">Dormitorio</option>
+                        <option value="#1">Living</option>
+                        <option value="#1">Oficina</option>
+                    </select>
+                </div>
+                <div class="input-form">
+                    <label for="measurement">Medidas: </label>
+                    <input type="text" name="measurement" id='measurement'>
+                </div>
+                <div class="input-form">
+                    <label for="origin">Origen: </label>
+                    <input type="text" name="origin" id='origin'>
+                </div>
+                <div class="input-form">
+                    <label>Imagenes del producto</label>
+                    <input type="file" name="imgProduct" accept=".jpg, .jpeg, .png" multiple>
+                </div>
+                <div class="button-form">
+                    <button type="submit">Crear</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

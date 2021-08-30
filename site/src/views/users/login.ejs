@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <%- include('partials/head.ejs') %> 
+
+<body>
+  <%- include('partials/header.ejs') %>
+  <!--body-->
+  <div class="login">
+    <form action="/views/index.ejs" method="POST" class="card">
+      <div>
+        <h1> Iniciar Sesion</h1>
+      </div>
+      <input class="card__input input--style" type="text" name="email" placeholder="E-mail" required>
+      <span class="validationError email--absolute">Ingresa un email valido</span>
+      <input class="card__input input--style" type="password" name="contraseña" id="" placeholder="Contraseña" required>
+      <span class="validationError contraseña--absolute">Contraseña</span>
+      <a href="user/password" class="card__enlace">
+        <span class="card__text">¿Olvide mi contraseña?</span>
+      </a>
+      <a href="http://localhost:3000/register"><input type="button" role="button" value="Registrarse"
+          class="button button--positionRegister"></a>
+      <input type="submit" role="button" value="Ingresar" class="button button--positionIngresar">
+      <div class="check">
+        <input class="RecordarChecbox" type="checkbox" name="Recordar">
+        <label class="Recordar" for="Recordar"> Recordarme </label>
+      </div>
+    </form>
+  </div>
+  <!--Carrousel-->
+  <section class="carousel-container">
+
+    <div class="slides fade">
+      <img src="/images/banners/banner5.jpg" alt="">
+    </div>
+
+    <div class="slides fade">
+      <img src="/images/banners/banner6.jpg" alt="">
+    </div>
+
+    <div class="slides fade">
+      <img src="/images/banners/banner7.jpg" alt="">
+    </div>
+
+    <div class="slides fade">
+      <img src="/images/banners/banner8.jpg" alt="">
+    </div>
+
+    <!--Flechas de desplazamiento -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <!--Selectores de banner-->
+    <div class="dots">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+
+    </div>
+  </section>
+  <!-- Fin carrousel -->
+  </main>
+
+  <%- include('partials/footer.ejs') %>
+
+</body>
+
+</html>

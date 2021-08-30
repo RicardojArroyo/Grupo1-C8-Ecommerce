@@ -1,0 +1,152 @@
+<header>
+  <div class="main-header">
+
+    <div class="logo">
+      <a href="http://localhost:3000"><img src="/images/logo/logoimperio.png" alt=""></a>
+    </div>
+
+    <i class="fas fa-bars burguer-menu-icon" onclick="dropMenu()"></i>
+
+    <!-- Menu de navegacion mobil-->
+    <nav class="navigation-bar" id="navigation-bar-mobile">
+
+      <div class="user-icons-mobile">
+        <a href="/login.ejs"><i class="fas fa-user"></i></a>
+        <a href="product/carrito.ejs"><i class="fas fa-shopping-cart"></i></a>
+      </div>
+
+
+      <!-- elementos del menu (categorias) -->
+      <ul class="menu">
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`cocina`)">
+          COCINA
+          <i class="fas fa-chevron-down"></i>
+        </li>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`comedor`)">
+          COMEDOR
+          <i class="fas fa-chevron-down"></i>
+        </li>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`dormitorio`)">
+          DORMITORIO
+          <i class="fas fa-chevron-down"></i>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`living`)">
+          LIVING
+          <i class="fas fa-chevron-down"></i>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`oficina`)">
+          OFICINA
+          <i class="fas fa-chevron-down"></i>
+        </li>
+
+    </nav>
+
+    <!-- Menu navegacion escritorio-->
+    <nav class="navigation-bar" id="navigation-bar-desktop">
+      <!--elementos del menu (categorias)-->
+      <ul class="menu">
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`cocina`)">
+          COCINA
+          <i class="fas fa-chevron-down"></i>
+        </li>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`comedor`)">
+          COMEDOR
+          <i class="fas fa-chevron-down"></i>
+        </li>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`dormitorio`)">
+          DORMITORIO
+          <i class="fas fa-chevron-down"></i>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`living`)">
+          LIVING
+          <i class="fas fa-chevron-down"></i>
+        <li class="dropdown-menu" onclick="dropSubCategoryMenu(`oficina`)">
+          OFICINA
+          <i class="fas fa-chevron-down"></i>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- Icono del buscador en header mobil-->
+    <div class="search-icon" onclick="dropSearch()">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Buscador escritorio -->
+    <form action="#" class="search-form-desktop">
+      <div class="search-bar">
+        <input type="search" name="busqueda" id="">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </form>
+
+    <div class="user-icons-desktop">
+      <a href="/login"><i class="fas fa-user"></i></a>
+      <a href="product/carrito"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+
+
+  </div>
+
+  <nav class="nav_menu">
+    <!--Buscador movil-->
+
+    <form action="#" class="search-form-mobile" id="search">
+      <div class="search-bar">
+        <input type="search" name="busqueda" id="" placeholder="Buscar">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </form>
+
+    <!--Subcategorias desplegables-->
+
+    <div class="subcategory_menu" id="cocina">
+      <div class="subcategory_header">
+        <h3>COCINA</h3><img src="/images/close.png" onclick="closeWindow()" alt="">
+      </div>
+      <ul>
+        <li><a href="">Mueble 1</a></li>
+        <li><a href="">Mueble 2</a></li>
+      </ul>
+
+    </div>
+
+    <div class="subcategory_menu" id="comedor">
+      <div class="subcategory_header">
+        <h3>COMEDOR</h3><img src="/images/close.png" onclick="closeWindow()" alt="">
+      </div>
+      <ul>
+        <li><a href="">Mueble 1</a></li>
+        <li><a href="">Mueble 2</a></li>
+      </ul>
+
+    </div>
+
+    <div class="subcategory_menu" id="dormitorio">
+      <div class="subcategory_header">
+        <h3>DORMITORIO</h3><img src="/images/close.png" onclick="closeWindow()" alt="">
+      </div>
+      <ul>
+        <li><a href="">Mueble 1</a></li>
+        <li><a href="">Mueble 2</a></li>
+      </ul>
+    </div>
+    <div class="subcategory_menu" id="living">
+      <div class="subcategory_header">
+        <h3>LIVING</h3><img src="/images/close.png" onclick="closeWindow()" alt="">
+      </div>
+      <ul>
+        <li><a href="">Mueble 1</a></li>
+        <li><a href="">Mueble 2</a></li>
+      </ul>
+    </div>
+    <div class="subcategory_menu" id="oficina">
+      <div class="subcategory_header">
+        <h3>OFICINA</h3><img src="/images/close.png" onclick="closeWindow()" alt="">
+      </div>
+      <ul>
+        <li><a href="">Mueble 1</a></li>
+        <li><a href="">Mueble 2</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</header>

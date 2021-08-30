@@ -1,0 +1,113 @@
+
+
+main.admin-main {
+    background-image: url('/images/fondoadmin1.jpg');  
+    height: 100%;
+    padding: 3rem 1rem;
+}
+
+main.admin-main .container {
+    background-color: black;
+    border: 1px solid rgba(7, 7, 7, 0.333);
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
+    padding: 1rem;
+}
+
+main.admin-main h2 {
+    text-align: center;
+    color: white;
+    margin: 20px 0;
+}
+
+main.admin-main form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main.admin-main .input-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 1rem;
+}
+
+main.admin-main input {
+    border: none;
+    border-radius: 5px;
+    height: 1.5rem;
+    padding: 0.5px;
+}
+
+main.admin-main label {
+    margin-bottom: 3px;
+    color: white;
+}
+
+main.admin-main input {
+    outline: none;
+    padding-left: 10px;
+}
+
+main.admin-main select {
+    border: none;
+    border-radius: 5px;
+    height: 1.5rem;
+    padding: 0.5px;
+    background-color: white;
+}
+
+main.admin-main textarea {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    height: 150px;
+}
+
+main.admin-main button {
+    height: 42px;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+    background: black;
+    outline: none;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 12px;
+    border: 2px solid #222222;
+    transition: all 0.3s ease-in-out;
+}
+
+main .admin-main button:hover{
+    background: none;
+    border: 2px solid #D4AF37;
+}
+
+/* Media Quieries */
+/* Tablet */
+
+@media screen and (min-width: 475px) {
+    main.admin-main .input-form {
+        width: 90%;
+    }
+
+    main.admin-main .container {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    main.admin-main .input-form {
+        width: 80%;
+    }
+
+    main.admin-main .container {
+        width: 25rem;
+    }
+}
