@@ -11,8 +11,13 @@
     <nav class="navigation-bar" id="navigation-bar-mobile">
 
       <div class="user-icons-mobile">
+<<<<<<< HEAD
         <a href="/login.ejs"><i class="fas fa-user"></i></a>
         <a href="product/carrito.ejs"><i class="fas fa-shopping-cart"></i></a>
+=======
+        <a href="http://localhost:3000/product/Carrito"><i class="fas fa-user"></i></a>
+        <a href="/product/carrito"><i class="fas fa-shopping-cart"></i></a>
+>>>>>>> main
       </div>
 
 
@@ -79,8 +84,26 @@
     </form>
 
     <div class="user-icons-desktop">
+<<<<<<< HEAD
       <a href="/login"><i class="fas fa-user"></i></a>
       <a href="product/carrito"><i class="fas fa-shopping-cart"></i></a>
+=======
+      <div class="dropdown">
+        <% if(typeof session.user != 'undefined') { %>
+          <i class="fas fa-user"><button onclick="myFunction()" class="dropbtn"></button></i><span class="session"></span>
+          <div class="dropdown-content" id="myDropdown">
+            <a href="/users/profile">Mi perfil</a>
+            <a href="/users/logout">Cerrar sesión</a>
+            <% if(session.user.rol === 'ROL_ADMIN') { %>
+              <a href="/admin">Admin</a>
+            <% } %>
+          </div>
+        <% } else { %>
+          <a href="/users/login"><i class="fas fa-user"></i></a>
+        <% } %>  
+      </div>
+      <a href="/product/carrito"><i class="fas fa-shopping-cart"></i></a>
+>>>>>>> main
     </div>
 
 

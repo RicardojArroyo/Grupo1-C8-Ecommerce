@@ -1,0 +1,52 @@
+main.admin-main-product {
+    margin: 7rem;
+}
+
+main.admin-main-product table tbody .edit-button,
+main.admin-main-product table tbody .delete-button {
+    width: 30%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+main.admin-main-product table tbody tr td a div.edit-button {
+    background-color: lightseagreen;
+    color: white;
+}
+
+main.admin-main-product table tbody tr td button.delete-button {
+    background-color: red;
+    color: white;
+}
+
+main.admin-main-product .head-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+main.admin-main-product .add-button {
+    background-color: rgb(50, 161, 50);
+    border-radius: 5px;
+    height: 35px;
+    width: 80px;
+    padding: 5px;
+    margin-bottom: 8px;
+}
+
+main.admin-main-product a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+main.admin-main-product .add-button:hover {
+    background-color: rgb(66, 184, 66);
+}
+
+main.admin-main-product table tbody tr td a div.edit-button:hover {
+    background-color: rgb(102, 187, 183);
+}
+
+main.admin-main-product table tbody tr td button.delete-button:hover {
+    background-color: rgb(250, 48, 48);
+}

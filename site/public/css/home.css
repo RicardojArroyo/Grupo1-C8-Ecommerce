@@ -45,6 +45,10 @@
     text-align: center;
     cursor: pointer;
     width: 100%;
+<<<<<<< HEAD
+=======
+    border-radius: 5px;
+>>>>>>> main
   }
   button.buttonProductos {
     margin: 15px 0px;

@@ -5,6 +5,14 @@ main.admin-main {
     padding: 2rem 1rem;
 }
 
+<<<<<<< HEAD
+=======
+main.admin-main a {
+    color: white;
+    text-decoration: none;
+}
+
+>>>>>>> main
 main.admin-main .container {
     background-color: black;
     border: 1px solid rgba(8, 8, 8, 0.333);

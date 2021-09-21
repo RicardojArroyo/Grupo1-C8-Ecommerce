@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head.ejs') %> 
+
+<body class="profile">
+    <%- include('../partials/header.ejs') %>
+
+    <div class="form-container">
+        <h2 class="perfile">Mis datos</h2>
+        <hr>
+                <div class="profile-box">
+                    <h3 class="profile-subtitle">Avatar</h3>
+                    <div class="avatar">
+                        <img src="/images/usersAvatar/<%= user.avatar %>" alt="">
+                    </div>
+                </div>
+                <div class="profile-form">
+                    
+                    <div class="profile-box">
+                        <h3 class="profile-subtitle">Datos personales</h3>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">Email: </label>
+                                    <p><%= user.email %></p>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">Nombre: </label>
+                                    <p><%= user.name %></p>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">Apellido: </label>
+                                    <p><%= user.lastname %></p>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">DNI: </label>
+                                    <p><%= user.dni %></p>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="profile-box">
+                        <h3 class="profile-subtitle">Datos de contacto</h3>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Teléfono: </label>
+                                <p><%= user.tel %></p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Provincia: </label>
+                                <select name="provincia" class="input-select">
+                                    <option value="" hidden selected>Elija una provincia</option>
+                                    <option value="laRioja">La Rioja</option>
+                                    <option value="chaco">Chaco</option>
+                                    <option value="cordoba">Córdoba</option>
+                                    <option value="misiones">Misiones</option>
+                                    <option value="chubut">Chubut</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Localidad: </label>
+                                <select name="localidad" class="input-select">
+                                    <option value="" hidden selected>Elija una localidad</option>
+                                    <option value="localidad1">Localidad1</option>
+                                    <option value="localidad2">Localidad2</option>
+                                    <option value="localidad3">Localidad3</option>
+                                    <option value="localidad4">Localidad4</option>
+                                    <option value="localidad5">Localidad5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Dirección: </label>
+                                <p><%= user.address %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="button-container">
+                    <a href="/users/profile/edit/<%= user.id %>"><button class="btn btn-edit">Editar</button></a>
+                </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ('../admin/adminHead.ejs') %>
+<body>
+    <%- include ('../admin/adminHeader.ejs') %>
+    <main class="admin-main-product">
+        <div class="head-bar">
+            <h4>Lista de productos</h4>
+            <a href="/admin/create"><div class="add-button">Agregar</div></a>
+        </div>
+        
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% productos.forEach(producto => { %>
+                    <tr>
+                        <th scope="row"><%= producto.id %></th>
+                        <td><%= producto.productName %></td>
+                        <td><%= producto.category %></td>
+                        <td><%= producto.price %></td>
+                        <td><a href="/admin/edit/<%= producto.id %>"><div class="edit-button"><i class="fas fa-pen"></i></div></a></td>
+                        <td>
+                            <form action="/admin/delete/<%= producto.id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="delete-button"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %> 
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

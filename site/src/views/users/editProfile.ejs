@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+<<<<<<< HEAD
     <%- include('partials/head.ejs') %> 
 
 <body class="profile">
@@ -11,16 +12,34 @@
             <form action="" method="">
                 <div class="profile-box">
                     <h4 class="profile-subtitle">Avatar</h4>
+=======
+    <%- include('../partials/head.ejs') %> 
+
+<body class="profile">
+    <%- include('../partials/header.ejs') %>
+
+    <div class="form-container">
+        <h2 class="perfile">Mis datos</h2>
+        <hr>
+            <form action="/users/profile/edit/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="profile-box">
+                    <h3 class="profile-subtitle">Avatar</h3>
+>>>>>>> main
                     <div class="avatar">
                       
                     </div>
                     <div class="input-file-container">
+<<<<<<< HEAD
                         <input type="file" name="" id="">
+=======
+                        <input type="file" name="avatar" id="">
+>>>>>>> main
                     </div>
                 </div>
                 <div class="profile-form">
                     
                     <div class="profile-box">
+<<<<<<< HEAD
                         <h4 class="profile-subtitle">Datos personales</h4>
                             <div class="input-container">
                                 <input class="input-style" type="email" name="email" placeholder="Ingrese su email" value="user.email@mail.com" readonly>
@@ -65,16 +84,97 @@
                         </div>
                         <div class="input-container">
                             <input class="input-style" type="text" name="Direccion" placeholder="Direccion">
+=======
+                        <h3 class="profile-subtitle">Datos personales</h3>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">Email: </label>
+                                    <p><%= user.email %></p>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">Nombre: </label>
+                                    <input class="input-style" type="text" name="name" placeholder="Nombre" value="<%= locals.old ? old.name : user.name %>">
+                                </div>
+                                <% if (locals.errors && errors.name) { %>
+                                    <small class="text-danger"><%= errors.name.msg %> </small>
+                                <% } %>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">Apellido: </label>
+                                    <input class="input-style" type="text" name="lastname" placeholder="Apellido" value="<%= locals.old ? old.lastname : user.lastname %>">
+                                </div>
+                                <% if (locals.errors && errors.lastname) { %>
+                                    <small class="text-danger"><%= errors.lastname.msg %> </small>
+                                <% } %>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-flex">
+                                    <label for="">DNI: </label>
+                                    <input class="input-style" type="number" name="dni" placeholder="DNI" value="<%= user.dni ? user.dni : "" %>">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="profile-box">
+                        <h3 class="profile-subtitle">Datos de contacto</h3>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Teléfono: </label>
+                                <input class="input-style" type="tel" name="tel" placeholder="Teléfono" value="<%= user.tel ? user.tel : "" %>">
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Provincia: </label>
+                                <select name="provincia" class="input-select">
+                                    <option value="" hidden selected>Elija una provincia</option>
+                                    <option value="laRioja">La Rioja</option>
+                                    <option value="chaco">Chaco</option>
+                                    <option value="cordoba">Córdoba</option>
+                                    <option value="misiones">Misiones</option>
+                                    <option value="chubut">Chubut</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Localidad: </label>
+                                <select name="localidad" class="input-select">
+                                    <option value="" hidden selected>Elija una localidad</option>
+                                    <option value="localidad1">Localidad1</option>
+                                    <option value="localidad2">Localidad2</option>
+                                    <option value="localidad3">Localidad3</option>
+                                    <option value="localidad4">Localidad4</option>
+                                    <option value="localidad5">Localidad5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <div class="input-flex">
+                                <label for="">Dirección: </label>
+                                <input class="input-style" type="text" name="address" placeholder="Direccion" value="<%= user.address ? user.address : "" %>">
+                            </div>
+>>>>>>> main
                         </div>
                     </div>
                 </div> 
                 <div class="button-container">
+<<<<<<< HEAD
                     <button type="reset" class="btn btn-reset">Reset</button>
+=======
+                    <a href="/users/profile"><button type="submit" class="btn btn-edit">Cancelar</button></a>
+>>>>>>> main
                     <button type="submit" class="btn btn-edit">Guardar</button>
                 </div> 
             </form>
     </div>
+<<<<<<< HEAD
     <%- include('partials/footer.ejs') %>
+=======
+    <%- include('../partials/footer.ejs') %>
+>>>>>>> main
 
 </body>
 </html>

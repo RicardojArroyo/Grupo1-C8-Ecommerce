@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+<<<<<<< HEAD
     <%- include ('partials/head.ejs') %>
 <body>
     <%- include('partials/header.ejs') %>
+=======
+    <%- include ('../admin/adminHead.ejs') %>
+<body>
+    <%- include('../admin/adminHeader.ejs') %>
+>>>>>>> main
     <main class="admin-main">
         
         <div class="container">
             <h2>Editar Producto</h2>
+<<<<<<< HEAD
             <form action="/admin" method="POST">
 
                 <div class="input-form">
@@ -42,6 +49,50 @@
                 <div class="input-form">
                     <label for="origin">Origen: </label>
                     <input type="text" name="origin" id='origin'>
+=======
+            <form action="/admin/edit/<%= producto.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="input-form">
+                    <label for="productName">Nombre del producto: </label>
+                    <input type="text" name="productName" id='productName' value="<%= locals.old ? old.productName : producto.productName %>">
+                    <% if(locals.errors && errors.productName) { %>
+                        <small class="error"><%= errors.productName.msg %></small>
+                    <% } %>
+                </div>
+                <div class="input-form">
+                    <label for="price">Precio: </label>
+                    <input type="text" name="price" id='price' value="<%= locals.old ? old.price : producto.price %>">
+                    <% if(locals.errors && errors.price) { %>
+                        <small class="error"><%= errors.price.msg %></small>
+                    <% } %>
+                </div>
+                <div class="input-form">
+                    <label for="description">Descripción: </label>
+                    <textarea name="description" id='description'><%= locals.old ? old.description : producto.description %></textarea>
+                    <% if(locals.errors && errors.description) { %>
+                        <small class="error"><%= errors.description.msg %></small>
+                    <% } %>
+                </div>
+                <div class="input-form">
+                    <label>Categoría: </label>
+                    <select name="category" id="" value="<%= producto.category %>">
+                        <option value="Cocina">Cocina</option>
+                        <option value="Comedor">Comedor</option>
+                        <option value="Dormitorio">Dormitorio</option>
+                        <option value="Living">Living</option>
+                        <option value="Oficina">Oficina</option>
+                    </select>
+                </div>
+                <div class="input-form">
+                    <label for="measures">Medidas: </label>
+                    <input type="text" name="measures" id='measures' value="<%= producto.measures %>">
+                </div>
+                <div class="input-form">
+                    <label for="origin">Origen: </label>
+                    <input type="text" name="origin" id='origin' value="<%= locals.old ? old.origin : producto.origin %>">
+                    <% if(locals.errors && errors.origin) { %>
+                        <small class="error"><%= errors.origin.msg %></small>
+                    <% } %>
+>>>>>>> main
                 </div>
                 <div class="input-form">
                     <label>Imagenes del producto</label>
@@ -49,7 +100,11 @@
                 </div>
                 <div class="buttons-edit">
                     <div class="button-form-edit">
+<<<<<<< HEAD
                         <button type="submit">Cancelar</button>
+=======
+                        <button type="submit"><a href="/admin/products">Cancelar</a></button>
+>>>>>>> main
                     </div>
                     <div class="button-form-edit">
                         <button type="submit">Guardar</button>

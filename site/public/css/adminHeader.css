@@ -1,0 +1,32 @@
+header.admin-header {
+    background-color: black;
+    width: 100%;
+}
+
+header.admin-header h4 {
+    color: white;
+    margin: 15px;
+}
+
+header.admin-header .nav-admin {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+}
+
+header.admin-header .nav-admin ul {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin-top: auto;
+}
+
+header.admin-header .nav-admin a {
+    text-decoration: none;
+    color:white;
+}
+
+header.admin-header .admin-li {
+    margin: 0 25px;
+}
