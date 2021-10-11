@@ -136,6 +136,10 @@ module.exports = {
                 rol: user.rol
             }
 
+            if(req.body.recordar){
+                res.cookie("usersimperio", req.session.user, {expires: new Date(Date.now() + 900000), httpOnly : true})
+            }
+
             res.locals.user = req.session.user;
 
             res.redirect('/');
@@ -149,7 +153,9 @@ module.exports = {
     },
     logout: (req, res) => {
         req.session.destroy()
-
+        if(req.cookies.userimperio){
+            res.cookie("usersimperio", "", {maxAge: -1})
+        }
         res.redirect('/')
-    }
+    } 
 }
