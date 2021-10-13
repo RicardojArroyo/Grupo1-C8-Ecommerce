@@ -4,7 +4,8 @@ let port = 3000;
 let path = require('path');
 let methodOverride = require('method-override');
 let session = require('express-session');
-let cookieParser = require('cookie-parser')
+let cookieParser = require('cookie-parser');
+let localsCheck = require('./middlewares/localsCheck');
 
 /* ENRUTADORES */
 let indexRouter = require('./routes/index');
@@ -25,9 +26,9 @@ app.use(cookieParser());
 app.use(session({
     secret: 'muebleriaImperio',
     resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60 * 10000 }
+    saveUninitialized: true
 }));
+app.use(localsCheck);
 
 /* RUTAS */
 app.use('/', indexRouter);
