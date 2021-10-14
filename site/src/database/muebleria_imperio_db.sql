@@ -81,6 +81,9 @@ CREATE TABLE `products` (
   `measures` varchar(100) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `origin` varchar(100) NOT NULL,
+  `discount` int(11) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_d609518a-22a6-47db-8d4e-a87f95e24af6` (`categoryId`),
   CONSTRAINT `FK_d609518a-22a6-47db-8d4e-a87f95e24af6` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`)
