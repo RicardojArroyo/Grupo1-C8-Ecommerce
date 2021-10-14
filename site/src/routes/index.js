@@ -4,9 +4,8 @@ let router = express.Router();
 let controller = require('../controllers/indexController')
 =======
 let controller = require('../controllers/indexController.js');
->>>>>>> main
+let cookieCheck = require('../middlewares/cookieCheck');
 
-router.get('/', controller.index)
-
+router.get('/', cookieCheck, controller.index)
 
 module.exports = router;

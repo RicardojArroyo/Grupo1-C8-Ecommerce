@@ -156,7 +156,7 @@ module.exports = {
             }
 
             if(req.body.recordar){
-                res.cookie("usersimperio", req.session.user, {expires= new Date(Date.now() + 1000 * 60 * 10), httpOnly : true})
+                res.cookie("usersimperio", req.session.user, {expires: new Date(Date.now() + 900000), httpOnly : true})
             }
 
             res.locals.user = req.session.user;
