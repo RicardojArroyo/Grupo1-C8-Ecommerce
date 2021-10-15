@@ -2,7 +2,7 @@ module.exports = (sequelize, dataTypes) => {
     let alias = 'Product';
     let cols = {
         id: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER(11).UNSIGNED,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
@@ -16,7 +16,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         categoryId: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER(11),
             allowNull: false
         },
         measures: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: true
         },
         price: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER(11),
             allowNull: false
         },
         origin: {
@@ -32,13 +32,13 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         discount: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER(11),
             allowNull: false
         }
     }
     let config = {
         tableName: 'products',
-        timestamps: false
+        timestamps: true
     }
 
     const Product = sequelize.define(alias, cols, config)
@@ -50,7 +50,7 @@ module.exports = (sequelize, dataTypes) => {
         })
         Product.hasMany(models.ProductImg, {
             as: 'images',
-            foreignKey: 'productsId'
+            foreignKey: 'productId'
         })
     }
 
