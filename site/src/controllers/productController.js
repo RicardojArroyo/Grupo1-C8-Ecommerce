@@ -1,4 +1,4 @@
-let { getProducts } = require('../database2/dataBase')
+let { getProducts } = require('../data/dataBase')
 
 module.exports = {
     productDetail: (req, res) => {
