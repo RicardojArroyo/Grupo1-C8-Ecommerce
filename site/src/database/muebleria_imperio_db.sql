@@ -16,34 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `addresses`
---
-
-DROP TABLE IF EXISTS `addresses`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `addresses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `streetAndNumber` varchar(100) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `province` varchar(100) DEFAULT NULL,
-  `userId` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_b2cebc67-9894-471c-95c2-255a7aebd4fa` (`userId`),
-  CONSTRAINT `FK_b2cebc67-9894-471c-95c2-255a7aebd4fa` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `addresses`
---
-
-LOCK TABLES `addresses` WRITE;
-/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `categories`
 --
 
@@ -75,13 +47,13 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `productName` varchar(150) DEFAULT NULL,
-  `description` varchar(800) DEFAULT NULL,
+  `productName` varchar(150) NOT NULL,
+  `description` varchar(800) NOT NULL,
   `categoryId` int(11) NOT NULL,
   `measures` varchar(100) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `origin` varchar(100) NOT NULL,
-  `discount` int(11) DEFAULT NULL,
+  `discount` int(11) NOT NULL,
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -108,14 +80,11 @@ DROP TABLE IF EXISTS `products_images`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `image1` varchar(100) NOT NULL,
-  `image2` varchar(100) NOT NULL,
-  `image3` varchar(100) NOT NULL,
-  `image4` varchar(100) NOT NULL,
-  `productsId` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `productId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_f819129a-538d-4df8-80ac-234064b81f5a` (`productsId`),
-  CONSTRAINT `FK_f819129a-538d-4df8-80ac-234064b81f5a` FOREIGN KEY (`productsId`) REFERENCES `products` (`id`)
+  KEY `FK_f819129a-538d-4df8-80ac-234064b81f5a` (`productId`),
+  CONSTRAINT `FK_f819129a-538d-4df8-80ac-234064b81f5a` FOREIGN KEY (`productId`) REFERENCES `products` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,9 +111,14 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(70) NOT NULL,
   `avatar` varchar(100) DEFAULT NULL,
-  `rol` varchar(15) NOT NULL,
-  `tel` varchar(11) DEFAULT NULL,
-  `dni` int(9) DEFAULT NULL,
+  `rol` int(2) NOT NULL DEFAULT 0,
+  `tel` varchar(30) DEFAULT NULL,
+  `dni` int(11) NOT NULL,
+  `street` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `province` varchar(100) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -171,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-11 23:14:53
+-- Dump completed on 2021-10-14 23:48:27
