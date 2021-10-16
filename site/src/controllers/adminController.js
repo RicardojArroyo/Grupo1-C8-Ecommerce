@@ -1,5 +1,6 @@
 let { getProducts, writeProductsJson } = require('../data/dataBase');
 let { validationResult } = require('express-validator');
+let db = require('../database/models');
 
 module.exports = {
     index: (req, res) => {

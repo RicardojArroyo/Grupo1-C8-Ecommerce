@@ -1,4 +1,4 @@
-const { check, body } = require('express-validator');
+/* const { check, body } = require('express-validator');
 const { getUsers } = require('../data/dataBase');
 let bcrypt = require('bcryptjs');
 
@@ -20,4 +20,4 @@ module.exports = [
         return bcrypt.compareSync(value, user.contraseña)
     })
     .withMessage('Contraseña inválida')
-]
+] */

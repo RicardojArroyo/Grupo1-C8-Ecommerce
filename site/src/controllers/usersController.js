@@ -1,6 +1,7 @@
 let { getUsers, writeUsersJson } = require('../data/dataBase');
 let { validationResult } = require('express-validator');
-let bcrypt = require('bcryptjs')
+let bcrypt = require('bcryptjs');
+let db = require('../database/models');
 
 module.exports = {
     /* Login form */
@@ -76,8 +77,29 @@ module.exports = {
     processRegister: (req, res) => {
         let errors = validationResult(req);
 
+        if (req.fileValidatorError) {
+            let image = {
+              param: "image",
+              msg: req.fileValidatorError,
+            };
+            errors.push(image);
+        }
+
         if(errors.isEmpty()) {
-            let lastId = 0;
+            let { name, lastname, email, pass } = req.body;
+
+            db.User.create({
+                name,
+                lastname,
+                email,
+                password: bcrypt.hashSync(pass, 12),
+                avatar: req.file ? req.file.filename : 'default-image.png',
+                rol: 0,
+            }).then(() => {
+                res.redirect('/users/login');
+            }).catch(err => console.log(err))
+
+            /* let lastId = 0;
 
             getUsers.forEach(usuarios => {
                 if (usuarios.id > lastId) {
@@ -111,7 +133,7 @@ module.exports = {
 
             writeUsersJson(getUsers);
 
-            res.redirect('/users/login');
+            res.redirect('/users/login'); */
 
         } else {
             res.render('users/register', {
