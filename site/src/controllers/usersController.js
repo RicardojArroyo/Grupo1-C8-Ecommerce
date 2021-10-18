@@ -1,6 +1,6 @@
-let { getUsers, writeUsersJson } = require('../data/dataBase');
 let { validationResult } = require('express-validator');
 let bcrypt = require('bcryptjs')
+let db = require('../database/models')
 
 module.exports = {
     /* Login form */
