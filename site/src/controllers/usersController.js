@@ -84,6 +84,17 @@ module.exports = {
         }
 
         if(errors.isEmpty()) {
+            let {name, lastname, email, password} = req.body;
+            db.User.create({
+                name,
+                lastname,
+                email,
+                password: bcrypt.hashSync(password, 12),
+                avatar: req.file ? req.file.filename : 'default-image.png',
+                rol: 1,
+            }).then(() => {
+                res.redirect('/user/login')
+            }).catch(err => console.log(err))
             
 
            /* let {
