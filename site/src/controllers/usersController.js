@@ -84,12 +84,12 @@ module.exports = {
         }
 
         if(errors.isEmpty()) {
-            let {name, lastname, email, password} = req.body;
+            let {name, lastname, email, pass} = req.body;
             db.User.create({
                 name,
                 lastname,
                 email,
-                password: bcrypt.hashSync(password, 12),
+                password: bcrypt.hashSync(pass, 12),
                 avatar: req.file ? req.file.filename : 'default-image.png',
                 rol: 1,
             }).then(() => {
@@ -97,27 +97,6 @@ module.exports = {
             }).catch(err => console.log(err))
             
 
-           /* let {
-                name,
-                lastname,
-                email,
-                password
-            } = req.body
-
-            let newUser = {
-                id: lastId + 1,
-                name,
-                lastname,
-                email,
-                contraseña: bcrypt.hashSync(password, 12),
-                avatar: req.file ? req.file.filename : 'default-image.png',
-                rol: 'ROL_USER',
-                tel: '',
-                address: '',
-                dni: '',
-                city: '',
-                province: ''
-            } */
 
             
 
@@ -134,24 +113,31 @@ module.exports = {
         let errors = validationResult(req);
 
         if(errors.isEmpty()) {
-            let user = getUsers.find(user => user.email === req.body.email);
-
-            req.session.user = {
-                id: user.id,
-                name: user.name,
-                lastname: user.lastname,
-                email: user.email,
-                avatar: user.avatar,
-                rol: user.rol
-            }
-
-            if(req.body.recordar){
-                res.cookie("usersimperio", req.session.user, {expires: new Date(Date.now() + 900000), httpOnly : true})
-            }
-
-            res.locals.user = req.session.user;
-
-            res.redirect('/');
+            db.User.findOne({
+                where: {
+                  email: req.body.email,
+                },
+              }).then((user) => {
+                req.session.user = {
+                  id: user.id,
+                  name: user.name,
+                  last_name: user.last_name,
+                  email: user.email,
+                  avatar: user.avatar,
+                  rol: user.rol,
+                };
+        
+                if (req.body.remember) {
+                  res.cookie("usersimperio", req.session.user, {
+                    expires: new Date(Date.now() + 900000),
+                    httpOnly: true,
+                  });
+                }
+        
+                res.locals.user = req.session.user;
+        
+                res.redirect("/");
+              });
 
         } else {
             res.render('users/login', {

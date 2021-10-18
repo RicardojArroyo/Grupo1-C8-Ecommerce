@@ -38,7 +38,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         dni: {
             type: dataTypes.INTEGER(11),
-            allowNull: false,
+            allowNull: true,
             unique: true
         },
         street: {
