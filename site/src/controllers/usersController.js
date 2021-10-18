@@ -74,18 +74,19 @@ module.exports = {
         res.render('users/password')
     },
     processRegister: (req, res) => {
-        let errors = validationResult(req);
+        let errors = validationResult(req)
+        if (req.filevalidatorError) {
+            let image = {
+                param: 'image',
+                msg: req.filevalidatorError,
+            };
+            errors.push(image);
+        }
 
         if(errors.isEmpty()) {
-            let lastId = 0;
+            
 
-            getUsers.forEach(usuarios => {
-                if (usuarios.id > lastId) {
-                    lastId = usuarios.id
-                }
-            })
-
-            let {
+           /* let {
                 name,
                 lastname,
                 email,
@@ -105,13 +106,10 @@ module.exports = {
                 dni: '',
                 city: '',
                 province: ''
-            }
+            } */
 
-            getUsers.push(newUser);
+            
 
-            writeUsersJson(getUsers);
-
-            res.redirect('/users/login');
 
         } else {
             res.render('users/register', {
