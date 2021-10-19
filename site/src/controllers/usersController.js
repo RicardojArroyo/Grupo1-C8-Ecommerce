@@ -1,66 +1,57 @@
-let { getUsers, writeUsersJson } = require('../data/dataBase');
 let { validationResult } = require('express-validator');
-let bcrypt = require('bcryptjs')
+let bcrypt = require('bcryptjs');
+let db = require('../database/models');
 
 module.exports = {
-    /* Login form */
     login: (req, res) => {
         res.render('users/login', {
             session: req.session
         })
     },
-    /* Register form */
     register: (req, res) => {
         res.render('users/register', {
             session: req.session
         })  
     },
-    /* User profile */
     profile: (req, res) =>{
-        let user = getUsers.find(user => user.id === req.session.user.id);
-
-        res.render('users/userProfile', {
-            user,
-            session: req.session
+        db.User.findByPk(req.session.user.id).then(user => {
+            res.render('users/userProfile', {
+                user,
+                session: req.session
+            })
         })
     },
     editProfile: (req, res) => {
-        let user = getUsers.find(user => user.id === +req.params.id)
-
-        res.render('users/editProfile', {
-            user,
-            session: req.session
+        db.User.findByPk(req.session.user.id).then(user => {
+            res.render('users/editProfile', {
+                user,
+                session: req.session
+            })
         })
     },
     updateProfile: (req, res) => {
         let errors = validationResult(req);
 
         if(errors.isEmpty()) {
-            let user = getUsers.find(user => user.id === +req.params.id)
-
-            let {
+            let { name, lastname, tel, street, dni, location, province } = req.body
+            db.User.update({
                 name,
                 lastname,
                 tel,
-                address,
-                dni
-            } = req.body
-
-            user.name = name
-            user.lastname = lastname
-            user.tel = tel
-            user.address = address
-            user.dni = dni
-            user.avatar = req.file ? req.file.filename : user.avatar
-
-            writeUsersJson(getUsers);
-
-            delete user.contraseña;
-
-            req.session.user = user;
-
-            res.redirect('/users/profile');
-
+                avatar: req.file ? req.file.filename : req.session.user.avatar,
+                street,
+                dni,
+                location,
+                province
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(() => {
+                res.redirect('/users/profile');
+            })
+            
         } else {
             res.render('users/editProfile', {
                 errors: errors.mapped(),
@@ -69,49 +60,33 @@ module.exports = {
             })
         }
     },
-    /* User password */
     password: (req, res) => {
         res.render('users/password')
     },
     processRegister: (req, res) => {
         let errors = validationResult(req);
 
+        if (req.fileValidatorError) {
+            let image = {
+              param: "image",
+              msg: req.fileValidatorError,
+            };
+            errors.push(image);
+        }
+
         if(errors.isEmpty()) {
-            let lastId = 0;
+            let { name, lastname, email, pass1 } = req.body;
 
-            getUsers.forEach(usuarios => {
-                if (usuarios.id > lastId) {
-                    lastId = usuarios.id
-                }
-            })
-
-            let {
+            db.User.create({
                 name,
                 lastname,
                 email,
-                password
-            } = req.body
-
-            let newUser = {
-                id: lastId + 1,
-                name,
-                lastname,
-                email,
-                contraseña: bcrypt.hashSync(password, 12),
+                password: bcrypt.hashSync(pass1, 12),
                 avatar: req.file ? req.file.filename : 'default-image.png',
-                rol: 'ROL_USER',
-                tel: '',
-                address: '',
-                dni: '',
-                city: '',
-                province: ''
-            }
-
-            getUsers.push(newUser);
-
-            writeUsersJson(getUsers);
-
-            res.redirect('/users/login');
+                rol: 0,
+            }).then(() => {
+                res.redirect('/users/login');
+            }).catch(err => console.log(err))
 
         } else {
             res.render('users/register', {
@@ -125,24 +100,29 @@ module.exports = {
         let errors = validationResult(req);
 
         if(errors.isEmpty()) {
-            let user = getUsers.find(user => user.email === req.body.email);
+            db.User.findOne({
+                where: {
+                    email: req.body.email
+                }
+            })
+            .then(user => {
+                req.session.user = {
+                    id: user.id,
+                    name: user.name,
+                    lastname: user.lastname,
+                    email: user.email,
+                    avatar: user.avatar,
+                    rol: user.rol
+                };
 
-            req.session.user = {
-                id: user.id,
-                name: user.name,
-                lastname: user.lastname,
-                email: user.email,
-                avatar: user.avatar,
-                rol: user.rol
-            }
+                if(req.body.recordar){
+                    res.cookie("usersimperio", req.session.user, {expires: new Date(Date.now() + 900000), httpOnly : true})
+                }
 
-            if(req.body.recordar){
-                res.cookie("usersimperio", req.session.user, {expires: new Date(Date.now() + 900000), httpOnly : true})
-            }
+                res.locals.user = req.session.user;
 
-            res.locals.user = req.session.user;
-
-            res.redirect('/');
+                res.redirect('/');
+            })
 
         } else {
             res.render('users/login', {
