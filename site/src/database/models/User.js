@@ -38,7 +38,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         dni: {
             type: dataTypes.INTEGER(11),
-            allowNull: false,
+            allowNull: true,
             unique: true
         },
         street: {
@@ -55,7 +55,8 @@ module.exports = (sequelize, dataTypes) => {
         }
     }
     let config = {
-
+        tableName: 'users',
+        timestamps: true
     }
 
     const User = sequelize.define(alias, cols, config)

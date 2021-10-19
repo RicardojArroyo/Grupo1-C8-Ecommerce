@@ -113,7 +113,7 @@ CREATE TABLE `users` (
   `avatar` varchar(100) DEFAULT NULL,
   `rol` int(2) NOT NULL DEFAULT 0,
   `tel` varchar(30) DEFAULT NULL,
-  `dni` int(11) NOT NULL,
+  `dni` int(11) DEFAULT NULL,
   `street` varchar(100) DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL,
   `province` varchar(100) DEFAULT NULL,
