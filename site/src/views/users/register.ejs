@@ -26,14 +26,14 @@
             <small class="error"><%= errors.email.msg %></small>
           <% } %>
 
-          <input type="password" placeholder="Contraseña" name="password" required class="input-form"><br>
-          <% if(locals.errors && errors.password) { %>
-            <small class="error"><%= errors.password.msg %></small>
-          <% } %>
-
-          <input type="password" placeholder="Repita su contraseña" name="pass" required class="input-form">
+          <input type="password" placeholder="Contraseña" name="pass1" required class="input-form"><br>
           <% if(locals.errors && errors.pass) { %>
             <small class="error"><%= errors.pass.msg %></small>
+          <% } %>
+
+          <input type="password" placeholder="Repita su contraseña" name="pass2" required class="input-form">
+          <% if(locals.errors && errors.pass2) { %>
+            <small class="error"><%= errors.pass2.msg %></small>
           <% } %>
 
           <div class="check">

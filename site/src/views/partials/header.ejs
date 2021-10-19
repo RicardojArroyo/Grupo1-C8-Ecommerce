@@ -85,7 +85,7 @@
           <div class="dropdown-content" id="myDropdown">
             <a href="/users/profile">Mi perfil</a>
             <a href="/users/logout">Cerrar sesión</a>
-            <% if(session.user.rol === 'ROL_ADMIN') { %>
+            <% if(session.user.rol === 1) { %>
               <a href="/admin">Admin</a>
             <% } %>
           </div>

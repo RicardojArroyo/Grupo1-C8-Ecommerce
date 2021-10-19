@@ -1,5 +1,5 @@
-let { getProducts, writeProductsJson } = require('../data/dataBase');
 let { validationResult } = require('express-validator');
+let db = require('../database/models');
 
 module.exports = {
     index: (req, res) => {
@@ -8,21 +8,64 @@ module.exports = {
         })
     },
     products: (req, res) => {
-        res.render('admin/adminProducts', {
-            productos: getProducts,
-            session: req.session
+        db.Product.findAll().then(products => {
+            res.render('admin/adminProducts', {
+                products,
+                session: req.session
+            })
         })
     },
     viewCreate: (req, res) => {
-        res.render('admin/adminCreate', {
-            session: req.session
-        })
+        db.Category.findAll().then(categories => {
+            res.render('admin/adminCreate', {
+                categories,
+                session: req.session
+            })
+        })    
     },
     create: (req, res) => {
         let errors = validationResult(req);
+        if (req.fileValidatorError) {
+            let image = {
+                param: 'image',
+                msg: req.fileValidatorError
+            };
+            errors.push(image)
+        }
 
         if (errors.isEmpty()) {
-            let lastId = 1;
+            let arrayImages = [];
+            if (req.files) {
+                req.files.forEach(image => {
+                    arrayImages.push(image.filename);
+                })
+            }
+
+            db.Product.create({
+                productName,
+                description,
+                categoryId: category,
+                measures,
+                price,
+                origin,
+                discount
+            })
+            .then(product => {
+                if(arrayImages.length > 0) {
+                    let images = arrayImages.map(image => {
+                        return {
+                            image: image,
+                            productId: product.id
+                        }
+                    })
+                    db.ProductImg.bulkCreate(images)
+                    .then(() => res.redirect('/admin/products'))
+                    .catch(err => console.log(err));
+                }
+            })
+
+
+            /* let lastId = 1;
 
             getProducts.forEach(producto => {
                 if (producto.id > lastId) {
@@ -53,7 +96,7 @@ module.exports = {
 
             writeProductsJson(getProducts);
 
-            res.redirect('/admin/products');
+            res.redirect('/admin/products'); */
         } else {
             res.render('admin/adminCreate', {
                 errors: errors.mapped(),

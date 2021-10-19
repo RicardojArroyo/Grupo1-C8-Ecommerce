@@ -39,7 +39,7 @@
                             <div class="input-container">
                                 <div class="input-flex">
                                     <label for="">DNI: </label>
-                                    <p><%= user.dni %></p>
+                                    <p><%= user.dni ? user.dni : "" %></p>
                                 </div>
                             </div>
                     </div>
@@ -48,13 +48,13 @@
                         <div class="input-container">
                             <div class="input-flex">
                                 <label for="">Teléfono: </label>
-                                <p><%= user.tel %></p>
+                                <p><%= user.tel ? user.tel : "" %></p>
                             </div>
                         </div>
                         <div class="input-container">
                             <div class="input-flex">
                                 <label for="">Provincia: </label>
-                                <select name="provincia" class="input-select">
+                                <select name="province" class="input-select">
                                     <option value="" hidden selected>Elija una provincia</option>
                                     <option value="laRioja">La Rioja</option>
                                     <option value="chaco">Chaco</option>
@@ -67,7 +67,7 @@
                         <div class="input-container">
                             <div class="input-flex">
                                 <label for="">Localidad: </label>
-                                <select name="localidad" class="input-select">
+                                <select name="location" class="input-select">
                                     <option value="" hidden selected>Elija una localidad</option>
                                     <option value="localidad1">Localidad1</option>
                                     <option value="localidad2">Localidad2</option>
@@ -80,7 +80,7 @@
                         <div class="input-container">
                             <div class="input-flex">
                                 <label for="">Dirección: </label>
-                                <p><%= user.address %></p>
+                                <p><%= user.street ? user.street : "" %></p>
                             </div>
                         </div>
                     </div>

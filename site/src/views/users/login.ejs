@@ -15,10 +15,10 @@
           <% if(locals.errors && errors.email) { %>
             <small class="error"><%= errors.email.msg %></small>
           <% } %>
-          <input class="card__input input--style" type="password" name="contraseña" id="" placeholder="Contraseña"
+          <input class="card__input input--style" type="password" name="password" id="" placeholder="Contraseña"
             required>
-          <% if(locals.errors && errors.contraseña) { %>
-              <small class="error"><%= errors.contraseña.msg %></small>
+          <% if(locals.errors && errors.password) { %>
+              <small class="error"><%= errors.password.msg %></small>
           <% } %>
           <div class="check">
             <input class="RecordarChecbox" type="checkbox" name="Recordar">
