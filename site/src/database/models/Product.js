@@ -33,7 +33,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         discount: {
             type: dataTypes.INTEGER(11),
-            allowNull: false
+            allowNull: true
         }
     }
     let config = {
