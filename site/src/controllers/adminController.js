@@ -41,6 +41,8 @@ module.exports = {
                 })
             }
 
+            let { productName, description, category, measures, price, origin, discount } = req.body
+
             db.Product.create({
                 productName,
                 description,
@@ -64,39 +66,6 @@ module.exports = {
                 }
             })
 
-
-            /* let lastId = 1;
-
-            getProducts.forEach(producto => {
-                if (producto.id > lastId) {
-                    lastId = producto.id
-                }
-            });
-
-            let arrayImages = [];
-            if (req.files) {
-                req.files.forEach(image => {
-                    arrayImages.push(image.filename);
-                })
-            }
-
-            let nuevoProducto = {
-                id: lastId + 1,
-                productName: req.body.productName,
-                description: req.body.description,
-                category: req.body.category,
-                measures: req.body.measures,
-                price: req.body.price,
-                origin: req.body.origin,
-                availability: req.body.availability,
-                image: arrayImages.length > 0 ? arrayImages : 'default-image.jpg'
-            }
-
-            getProducts.push(nuevoProducto);
-
-            writeProductsJson(getProducts);
-
-            res.redirect('/admin/products'); */
         } else {
             res.render('admin/adminCreate', {
                 errors: errors.mapped(),
@@ -106,17 +75,27 @@ module.exports = {
         }
     },
     viewEdit: (req, res) => {
-        let producto = getProducts.find(producto => {
-            return producto.id === +req.params.id;
-        })
+        let categoriesPromise = db.Category.findAll()
+        let productPromise = db.Product.findByPk(req.params.id)
 
-        res.render('admin/adminEdit', {
-            producto,
-            session: req.session
-        });
+        Promise.all([categoriesPromise, productPromise])
+        .then(([categories, products]) => {
+            res.render('admin/adminEdit', {
+                categories,
+                products,
+                session: req.session
+            });
+        })
     },
     edit: (req, res) => {
         let errors = validationResult(req);
+        if (req.fileValidatorError) {
+            let image = {
+                param: 'image',
+                msg: req.fileValidatorError
+            };
+            errors.push(image)
+        }
 
         if (errors.isEmpty()) {
             let arrayImages = [];
@@ -126,7 +105,34 @@ module.exports = {
                 })
             }
 
-            getProducts.forEach(producto => {
+            db.Product.update({
+                productName: req.body.productName,
+                description: req.body.description,
+                categoryId: req.body.category,
+                measures: req.body.measures,
+                price: req.body.price,
+                origin: req.body.origin,
+                discount: req.body.discount,
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(product => {
+                if(arrayImages.length > 0) {
+                    let images = arrayImages.map(image => {
+                        return {
+                            image: image,
+                            productId: product.id
+                        }
+                    })
+                    db.ProductImg.bulkCreate(images)
+                    .then(() => res.redirect('/admin/products'))
+                    .catch(err => console.log(err));
+                }
+            }).catch(err => console.log(err))
+            
+            /* getProducts.forEach(producto => {
                 if (producto.id === +req.params.id) {
                     producto.id = producto.id,
                         producto.productName = req.body.productName,
@@ -142,7 +148,7 @@ module.exports = {
 
             writeProductsJson(getProducts);
 
-            res.redirect('/admin/products');
+            res.redirect('/admin/products'); */
         } else {
             let producto = getProducts.find(producto => {
                 return producto.id === +req.params.id;
@@ -155,18 +161,24 @@ module.exports = {
             })
         }
 
-
     },
     deleteProduct: (req, res) => {
-        getProducts.forEach(producto => {
-            if (producto.id === +req.params.id) {
-                let productoAEliminar = getProducts.indexOf(producto);
-                getProducts.splice(productoAEliminar, 1);
+        db.ProductImg.destroy({
+            where: {
+                productId: req.params.id
             }
         })
-
-        writeProductsJson(getProducts);
-
-        res.redirect('/admin/products');
+        .then(() => {
+            db.Product.destroy({
+                where: {
+                    id: req.params.id
+                },
+                include: [{association: 'images'}]
+            })
+            .then(() => {
+                res.redirect('/admin/products')
+            })
+        })
+        .catch(err => console.log(err));
     }
 }

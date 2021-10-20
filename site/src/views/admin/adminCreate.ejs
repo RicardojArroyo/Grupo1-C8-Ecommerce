@@ -31,11 +31,10 @@
                 <div class="input-form">
                     <label>Categoría: </label>
                     <select name="category" id="">
-                        <option value="Cocina">Cocina</option>
-                        <option value="Comedor">Comedor</option>
-                        <option value="Dormitorio">Dormitorio</option>
-                        <option value="Living">Living</option>
-                        <option value="Oficina">Oficina</option>
+                        <option selected hidden value="">Categoría</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %>" <%= locals.old && old.category == category.name ? "selected" : null %> ><%- category.name %></option>
+                        <% }) %>
                     </select>
                 </div>
                 <div class="input-form">
