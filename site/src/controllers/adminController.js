@@ -8,11 +8,14 @@ module.exports = {
         })
     },
     products: (req, res) => {
-        db.Product.findAll().then(products => {
+        db.Product.findAll({
+            include: [{association: 'category'}]
+        })
+        .then(products => {
             res.render('admin/adminProducts', {
                 products,
                 session: req.session
-            })
+            });
         })
     },
     viewCreate: (req, res) => {
