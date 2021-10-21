@@ -25,7 +25,7 @@
                     <tr>
                         <th scope="row"><%= producto.id %></th>
                         <td><%= producto.productName %></td>
-                        <td><%= producto.category %></td>
+                        <td><%= producto.category.name %></td>
                         <td><%= producto.price %></td>
                         <td><a href="/admin/edit/<%= producto.id %>"><div class="edit-button"><i class="fas fa-pen"></i></div></a></td>
                         <td>
