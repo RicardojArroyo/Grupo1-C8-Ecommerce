@@ -10,7 +10,7 @@ header li {
 }
 
 .main-header {
-    background-color: black;
+    background-image: linear-gradient( to right, black, black, goldenrod, black, black);
     color: white;
     display: flex;
     justify-content: space-between;

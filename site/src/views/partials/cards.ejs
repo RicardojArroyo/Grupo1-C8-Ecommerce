@@ -1,0 +1,30 @@
+<div class="section-cards-imperio1">
+    <div class="cardsnproduct">
+        <div class="nuevos-productos">
+            <h1>Productos Destacados</h1>
+        </div>
+        <% if (withDiscount.length > 0 ) { %> <% withDiscount.forEach(producto => { %>
+        <div class="cardimp"> 
+            <div class="img-sectionimp">
+                <img src="mueble1.jpg" alt="puede contener un gran mueble de Imperio">
+            </div>
+            <div class="descripcionimp">
+                <h2>Mueble</h2>
+                <p><b>Precioso</b><span>$9800</span><del>$12.390</del></p>                    
+            </div>
+            <div class="button-group">
+                <a href="#" class="comprar">Comprar</a>
+                <a href="#" class="añadir">Añadir al carrito</a>
+            </div>
+            <div class="star-icons">
+                <a href=""><i class="fas fa-star"></i></a>
+                <a href=""><i class="fas fa-star"></i></a>
+                <a href=""><i class="fas fa-star-half-alt"></i></a>
+                <a href=""><i class="fas fa-star"></i></a>
+            </div>     
+        </div>
+        <% } %>
+       
+                            
+    </div>
+</div>

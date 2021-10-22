@@ -5,5 +5,13 @@ module.exports = {
         res.render('index', {
             session: req.session
         })
-    }
+    },
+
+    comprar: (req, res) => {
+        res.render('comprar', {
+            session: req.session
+        })
+    },
+
+
 }
