@@ -7,6 +7,7 @@ module.exports = {
         session: req.session
       })
     },
+    
     carrito: (req, res) => {
       res.render('product/carrito', {
         session: req.session

@@ -1,29 +1,31 @@
-<div class="section-cards-imperio1">
+<div class="section-cardsimperio1">
     <div class="cardsnproduct">
         <div class="nuevos-productos">
             <h1>Productos Destacados</h1>
         </div>
-        <% if (withDiscount.length > 0 ) { %> <% withDiscount.forEach(producto => { %>
+        <% sliderProducts.forEach(product => { %> 
         <div class="cardimp"> 
             <div class="img-sectionimp">
-                <img src="mueble1.jpg" alt="puede contener un gran mueble de Imperio">
+                <img src="/images/products/<%- product.images[0]?.image %>" alt="puede contener un gran mueble de Imperio">
             </div>
             <div class="descripcionimp">
-                <h2>Mueble</h2>
-                <p><b>Precioso</b><span>$9800</span><del>$12.390</del></p>                    
+                <h2><%= product.productName %></h2>
+                <p><b>Desc.</b><span><%- product.discount %> %  </span>Antes $<del id='delete'>  <%- product.price %> </del></p>                    
             </div>
             <div class="button-group">
-                <a href="#" class="comprar">Comprar</a>
+                <a href="/product/productDetail/<%= product.id %>" class="detalles">Ver detalles</a>
                 <a href="#" class="añadir">Añadir al carrito</a>
             </div>
             <div class="star-icons">
                 <a href=""><i class="fas fa-star"></i></a>
                 <a href=""><i class="fas fa-star"></i></a>
-                <a href=""><i class="fas fa-star-half-alt"></i></a>
+                <a href=""><i class="fas fa-star"></i></a>                
                 <a href=""><i class="fas fa-star"></i></a>
+                <a href=""><i class="fas fa-star-half-alt"></i></a>
             </div>     
         </div>
-        <% } %>
+        <% }) %>
+        
        
                             
     </div>
