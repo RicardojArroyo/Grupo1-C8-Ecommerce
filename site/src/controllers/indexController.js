@@ -1,6 +1,7 @@
 const { carousel} = require("../data/dataBase");
 let db = require('../database/models');
 const { Op } = require('sequelize');
+const { products } = require("./adminController");
 
 module.exports = {
     index: (req, res) => {
@@ -22,8 +23,8 @@ module.exports = {
         })
         .catch(error => console.log(error))
     },
+    
   
-
     comprar: (req, res) => {
         res.render('comprar.ejs', {
             session: req.session

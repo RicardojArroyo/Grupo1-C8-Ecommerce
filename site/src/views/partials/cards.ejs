@@ -10,7 +10,7 @@
             </div>
             <div class="descripcionimp">
                 <h2><%= product.productName %></h2>
-                <p><b>Desc.</b><span><%- product.discount %> %  </span>Antes $<del id='delete'>  <%- product.price %> </del></p>                    
+                <p>$ <%-product.price - product.price * product.discount / 100 %><b></b><span><%- product.discount %> % OFF </span>Antes $<del id='delete'><%- product.price %> </del></p>                    
             </div>
             <div class="button-group">
                 <a href="/product/productDetail/<%= product.id %>" class="detalles">Ver detalles</a>
