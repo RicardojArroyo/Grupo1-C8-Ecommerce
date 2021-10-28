@@ -20,7 +20,14 @@
                     <input type="text" name="price" id='price' value="<%= locals.old ? old.price : products.price %>">
                     <% if(locals.errors && errors.price) { %>
                         <small class="error"><%= errors.price.msg %></small>
-                    <% } %>
+                    <% } %><label for="discount">Descuento: </label>
+                                    <input type="number" name="discount" id='discount'
+                                        value="<%= locals.old && old.discount %>">
+                                    <% if(locals.errors && errors.discount) { %>
+                                        <small class="error">
+                                            <%= errors.discount.msg %>
+                                        </small>
+                                        <% } %>
                 </div>
                 <div class="input-form">
                     <label for="description">Descripción: </label>
@@ -29,6 +36,7 @@
                         <small class="error"><%= errors.description.msg %></small>
                     <% } %>
                 </div>
+                
                 <div class="input-form">
                     <label>Categoría: </label>
                     <select name="category" id="">

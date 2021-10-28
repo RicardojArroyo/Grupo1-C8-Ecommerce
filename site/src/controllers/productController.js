@@ -1,21 +1,44 @@
-
 let db = require('../database/models');
+const { Op } = require("sequelize");
 
 module.exports = {
-    productDetail: (req, res) => {
-      res.render('product/productDetail', {
-        session: req.session
-      })
-    },
+  productDetail: (req, res) => {
+    db.Product.findByPk(req.params.id, {
+      include: {association : 'images'}
+    })
+    .then(product => {
+      res.send(product)
+    })
+  },
     carrito: (req, res) => {
       res.render('product/carrito', {
         session: req.session
       })
-    },
+  },
     detail: (req, res) => {
-      let producto = getProducts.find(producto => {
-        return producto.id === +req.params.id
+      db.Product.findByPk(req.params.id, {
+        include: {association : 'images'}
       })
-      res.render('product/productDetail', { producto: producto, session: req.session })
-    }
+      .then(producto => {
+        res.render('product/productDetail',{
+          producto,
+          session: req.session
+        })
+        //res.send(producto)
+      })
+    },
+    search: (req, res) => {
+      db.Products.findAll({
+          where: {
+              name: {
+                  [Op.like]: `%${req.query.search}`
+              }
+          },
+          include: [{association: "productImages"}]
+      }).then(result => res.render('searchResult', {
+          result,
+          session: req.session,
+          search: req.query.search
+      }))
+  },
 }

@@ -1,4 +1,4 @@
-.section-cards-imperio1{
+.section-cardsimperio1{
     width: 100%;
     min-height: 100vh;
     background-color: #eee;    
@@ -89,6 +89,10 @@
     margin-left: 7px;
     font-size: 15px;
     color: #f2533a;
+}
+
+#delete{
+    text-decoration: line-through;
 }
 
 .button-group{
