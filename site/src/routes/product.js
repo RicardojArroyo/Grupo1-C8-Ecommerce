@@ -8,4 +8,10 @@ router.get('/detail/:id', detail);
 /* GET - carrito */
 router.get('/carrito', carrito)
 
+/* GET - lista producto categora */
+//router.get('/category/:id', category)
+
+/* GET - List products for search */
+//router.get('/search', search)
+
 module.exports = router

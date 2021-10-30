@@ -64,7 +64,14 @@ module.exports = {
         res.render('users/password')
     },
     processRegister: (req, res) => {
-        let errors = validationResult(req);
+        let errors = validationResult(req)
+        if (req.filevalidatorError) {
+            let image = {
+                param: 'image',
+                msg: req.filevalidatorError,
+            };
+            errors.push(image);
+        }
 
         if (req.fileValidatorError) {
             let image = {

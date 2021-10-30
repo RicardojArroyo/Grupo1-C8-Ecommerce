@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <%- include ('../partials/head.ejs') %>
 <body>
   <%- include('../partials/header.ejs') %>
@@ -9,31 +9,30 @@
         <div class="product-imgs">
           <div class="img-display">
             <div class="img-showcase">
-              <img src="/images/products/<%= producto.image[0] %>" alt="sofa image">
-              <img src="/images/products/<%= producto.image[1] %>" alt="sofa image">
-              <img src="/images/products/<%= producto.image[2] %>" alt="sofa image">
-              <img src="/images/products/<%= producto.image[3] %>" alt="sofa image">
+              <% producto.images.forEach(image => { %>
+                <img src="/images/products/<%= image.image %>" alt="sofa image">
+              <% }) %> 
             </div>
           </div>
           <div class="img-select">
             <div class="img-item">
               <a href="#" data-id="1">
-                  <img src="/images/products/<%= producto.image[0] %>" alt="sofa image">
+                  <img src="/images/products/<%= producto.images[0] %>" alt="sofa image">
               </a>
             </div>
             <div class="img-item">
               <a href="#" data-id="2">
-                <img src="/images/products/<%= producto.image[1] %>" alt="sofa image">
+                <img src="/images/products/<%= producto.images[1] %>" alt="sofa image">
               </a>
             </div>
             <div class="img-item">
               <a href="#" data-id="3">
-                <img src="/images/products/<%= producto.image[2] %>" alt="sofa image">
+                <img src="/images/products/<%= producto.images[2] %>" alt="sofa image">
               </a>
             </div>
             <div class="img-item">
               <a href="#" data-id="4">
-                <img src="/images/products/<%= producto.image[3] %>" alt="sofa image">
+                <img src="/images/products/<%= producto.images[3] %>" alt="sofa image">
               </a>
             </div>
           </div>
