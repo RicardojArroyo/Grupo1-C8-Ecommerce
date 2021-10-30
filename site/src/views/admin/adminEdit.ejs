@@ -10,21 +10,21 @@
             <form action="/admin/edit/<%= products.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="input-form">
                     <label for="productName">Nombre del producto: </label>
-                    <input type="text" name="productName" id='productName' value="<%= locals.old ? old.productName : products.productName %>">
+                    <input type="text" name="productName" id='productName' value="<%= locals.old ? old.productName : product.productName %>">
                     <% if(locals.errors && errors.productName) { %>
                         <small class="error"><%= errors.productName.msg %></small>
                     <% } %>
                 </div>
                 <div class="input-form">
                     <label for="price">Precio: </label>
-                    <input type="text" name="price" id='price' value="<%= locals.old ? old.price : products.price %>">
+                    <input type="text" name="price" id='price' value="<%= locals.old ? old.price : product.price %>">
                     <% if(locals.errors && errors.price) { %>
                         <small class="error"><%= errors.price.msg %></small>
                     <% } %>
                 </div>
                 <div class="input-form">
                     <label for="description">Descripción: </label>
-                    <textarea name="description" id='description'><%= locals.old ? old.description : products.description %></textarea>
+                    <textarea name="description" id='description'><%= locals.old ? old.description : product.description %></textarea>
                     <% if(locals.errors && errors.description) { %>
                         <small class="error"><%= errors.description.msg %></small>
                     <% } %>
@@ -40,11 +40,11 @@
                 </div>
                 <div class="input-form">
                     <label for="measures">Medidas: </label>
-                    <input type="text" name="measures" id='measures' value="<%= products.measures %>">
+                    <input type="text" name="measures" id='measures' value="<%= product.measures %>">
                 </div>
                 <div class="input-form">
                     <label for="origin">Origen: </label>
-                    <input type="text" name="origin" id='origin' value="<%= locals.old ? old.origin : products.origin %>">
+                    <input type="text" name="origin" id='origin' value="<%= locals.old ? old.origin : product.origin %>">
                     <% if(locals.errors && errors.origin) { %>
                         <small class="error"><%= errors.origin.msg %></small>
                     <% } %>
