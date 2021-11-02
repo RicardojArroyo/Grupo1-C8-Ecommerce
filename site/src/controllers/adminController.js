@@ -111,8 +111,6 @@ module.exports = {
         }
 
         if (errors.isEmpty()) {
-            let { productName, description, measures, price, discount, origin  } =
-        req.body;
             let arrayImages = [];
             if (req.files) {
                 req.files.forEach(image => {
@@ -121,13 +119,13 @@ module.exports = {
             }
 
             db.Product.update({
-                productName,
-                description,
-                categoryId: category,
-                measures,
-                price,
-                discount,
-                origin,
+                productName: req.body.productName,
+                description: req.body.description,
+                categoryId: req.body.category,
+                measures: req.body.measures,
+                price: req.body.price,
+                discount: req.body.discount,
+                origin: req.body.origin,
                 
             }, {
                 where: {
@@ -140,7 +138,7 @@ module.exports = {
                         let images = arrayImages.map(image => {
                             return {
                                 image: image,
-                                productId: product.id
+                                productId: req.params.id
                             }
                         })
                         db.ProductImg.findAll({
@@ -164,7 +162,9 @@ module.exports = {
                 res.render('admin/adminEdit', {
                     categories,
                     product,
-                    session: req.session
+                    session: req.session,
+                    old: req.body,
+                    errors: errors.mapped()
                 });
             })
         }
