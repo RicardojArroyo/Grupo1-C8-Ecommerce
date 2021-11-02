@@ -1,3 +1,4 @@
+const { products, categories } = require('../data/dataBase');
 let db = require('../database/models');
 const { Op } = require("sequelize");
 
@@ -14,6 +15,38 @@ module.exports = {
       res.render('product/carrito', {
         session: req.session
       })
+  },
+  category: (req, res) => {
+        
+    db.Category.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {association: 'subcategory', 
+                include: [
+                    {association: 'product', 
+                        include: [
+                        {association: "images"}
+                ]}
+            ]}
+        ]
+    })
+    .then(category =>{
+        let subCategories = category.subcategory
+        let products = []
+        subCategories.forEach(subcategory => {
+            subcategory.product.forEach(product => products.push(product))
+        });
+        res.render('categories', {
+            category,
+            products,
+            toThousand,
+            subCategories,
+            usuario : req.session.user ? req.session.user : ""
+        }) 
+    })
+
   },
     detail: (req, res) => {
       db.Product.findByPk(req.params.id, {
