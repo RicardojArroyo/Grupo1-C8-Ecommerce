@@ -92,10 +92,10 @@ module.exports = {
         let productPromise = db.Product.findByPk(req.params.id)
 
         Promise.all([categoriesPromise, productPromise])
-        .then(([categories, products]) => {
+        .then(([categories, product]) => {
             res.render('admin/adminEdit', {
                 categories,
-                products,
+                product,
                 session: req.session
             });
         })
@@ -111,8 +111,6 @@ module.exports = {
         }
 
         if (errors.isEmpty()) {
-            let { productName, description, measures, price, discount, origin  } =
-        req.body;
             let arrayImages = [];
             if (req.files) {
                 req.files.forEach(image => {
@@ -121,62 +119,55 @@ module.exports = {
             }
 
             db.Product.update({
-                productName,
-                description,
-                categoryId: category,
-                measures,
-                price,
-                discount,
-                origin,
+                productName: req.body.productName,
+                description: req.body.description,
+                categoryId: req.body.category,
+                measures: req.body.measures,
+                price: req.body.price,
+                discount: req.body.discount,
+                origin: req.body.origin,
                 
             }, {
                 where: {
                     id: req.params.id
                 }
             })
-            .then(product => {
-                if(arrayImages.length > 0) {
-                    let images = arrayImages.map(image => {
-                        return {
-                            image: image,
-                            productId: product.id
-                        }
-                    })
-                    db.ProductImg.bulkCreate(images)
-                    .then(() => res.redirect('/admin/products'))
-                    .catch(err => console.log(err));
-                }
-            }).catch(err => console.log(err))
-            
-            /* getProducts.forEach(producto => {
-                if (producto.id === +req.params.id) {
-                    producto.id = producto.id,
-                        producto.productName = req.body.productName,
-                        producto.description = req.body.description,
-                        producto.category = req.body.category,
-                        producto.measures = req.body.measures,
-                        producto.price = req.body.price,
-                        producto.origin = req.body.origin,
-                        producto.availability = req.body.availability,
-                        producto.image = arrayImages.length > 0 ? arrayImages : producto.image
+            .then(result => {
+                if(result) {
+                    if(arrayImages.length > 0) {
+                        let images = arrayImages.map(image => {
+                            return {
+                                image: image,
+                                productId: req.params.id
+                            }
+                        })
+                        db.ProductImg.findAll({
+                            where: { productId: req.params.id }
+                        })
+                        .then(() => {
+                            db.ProductImg.bulkCreate(images)
+                            .then(res.redirect('admin/products'))
+                        })
+                        .catch(err => res.send(err))
+                    }
+                    res.redirect("/admin/products");
                 }
             })
-
-            writeProductsJson(getProducts);
-
-            res.redirect('/admin/products'); */
         } else {
-            let producto = getProducts.find(producto => {
-                return producto.id === +req.params.id;
-            })
-            res.render('admin/adminEdit', {
-                producto,
-                errors: errors.mapped(),
-                old: req.body,
-                session: req.session
+            let categoriesPromise = db.Category.findAll()
+            let productPromise = db.Product.findByPk(req.params.id)
+
+            Promise.all([categoriesPromise, productPromise])
+            .then(([categories, product]) => {
+                res.render('admin/adminEdit', {
+                    categories,
+                    product,
+                    session: req.session,
+                    old: req.body,
+                    errors: errors.mapped()
+                });
             })
         }
-
     },
     deleteProduct: (req, res) => {
         db.ProductImg.destroy({
