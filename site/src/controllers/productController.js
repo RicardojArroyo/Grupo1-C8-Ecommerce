@@ -49,29 +49,23 @@ module.exports = {
 
   },
     detail: (req, res) => {
-      db.Product.findByPk(req.params.id, {
-        include: {association : 'images'}
+      let categoriesPromise = db.Category.findAll()
+      let productPromise = db.Product.findByPk(+req.params.id, {
+        include: {association: 'images'}
       })
-      .then(producto => {
-        res.render('product/productDetail',{
-          producto,
-          session: req.session
-        })
-        //res.send(producto)
+
+      Promise.all([categoriesPromise, productPromise])
+      .then(([categories, products]) => {
+          res.render('product/productDetail', {
+                categories,
+                products,
+                session: req.session
+          });
+      }) 
+    }
+      /* let producto = getProducts.find(producto => {
+        return producto.id === +req.params.id
       })
-    },
-    search: (req, res) => {
-      db.Products.findAll({
-          where: {
-              name: {
-                  [Op.like]: `%${req.query.search}`
-              }
-          },
-          include: [{association: "productImages"}]
-      }).then(result => res.render('searchResult', {
-          result,
-          session: req.session,
-          search: req.query.search
-      }))
-  },
+      res.render('product/productDetail', { producto: producto, session: req.session })
+    } */
 }
