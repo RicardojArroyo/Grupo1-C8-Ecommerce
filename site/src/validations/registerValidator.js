@@ -17,7 +17,7 @@ module.exports = [
             }
         })
     }),
-    check('pass1').notEmpty().withMessage('Debes ingresar tu contraseña').isLength({min: 8}).withMessage('La contraseña debe tener como mínimo 8 caracteres'),
+    check('pass1').notEmpty().withMessage('Debes ingresar una contraseña').isLength({min: 8}).withMessage('La contraseña debe tener como mínimo 8 caracteres'),
     body('pass2').custom((value, {req}) => value !== req.body.pass1 ? false : true).withMessage('Las contraseñas no coinciden'),
     check('terms').isString('on').withMessage('Debes aceptar los términos y condiciones')
 ]
