@@ -8,7 +8,7 @@
 
   <main class="home">
     <div class="register">
-      <form action="/users/register" method="POST" class="card">
+      <form action="/users/register" method="POST" class="card" id="form">
         <h1>Crear Cuenta</h1>
         <div class="formulario">
           <input id="nombre" type="text" placeholder="Nombre" name="name" class="input-form"><br>
@@ -35,16 +35,17 @@
           <% if(locals.errors && errors.pass2) { %>
             <small class="error"><%= errors.pass2.msg %></small>
           <% } %>
-
+          <br>
           <div class="check">
-            <input type="checkbox" name="terms" id="recordar" class="checkbox"> 
+            <input type="checkbox" name="terms" id="terms" class="checkbox"> 
             <label for="terms">Acepto los términos y condiciones</label>
+            <small class="error" id="termsErrors"></small>
           </div>
           <% if(locals.errors && errors.terms) { %>
             <small class="error"><%= errors.terms.msg %></small>
           <% } %>
 
-          <button class="button button--positionRegister" onclick="validate()" id="button"
+          <button class="button button--positionRegister" id="button"
           type="submit">Registrarse</button>
           <a href="/users/login" class="login-link">Ya tengo una cuenta</a>
         </div>
@@ -54,7 +55,7 @@
 
   </main>
 
-
+  <script src="../../../js/registerValFront.js"></script>
 </body>
 
 </html>
