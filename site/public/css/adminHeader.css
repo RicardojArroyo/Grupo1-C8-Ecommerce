@@ -1,5 +1,5 @@
 header.admin-header {
-    background-color: black;
+    background-color: blue;
     width: 100%;
 }
 
@@ -29,4 +29,11 @@ header.admin-header .nav-admin a {
 
 header.admin-header .admin-li {
     margin: 0 25px;
+}
+
+@media screen and (max-width: 425px){
+    header.admin-header{
+        width: 100vw;
+
+    }
 }
