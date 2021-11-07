@@ -11,27 +11,32 @@
       <form action="/users/register" method="POST" class="card" id="form">
         <h1>Crear Cuenta</h1>
         <div class="formulario">
-          <input id="nombre" type="text" placeholder="Nombre" name="name" class="input-form"><br>
+          <input type="text" placeholder="Nombre" name="name" id="name" class="input-form">
+          <small class="error" id="nameErrors"></small>
           <% if(locals.errors && errors.name) { %>
             <small class="error"><%= errors.name.msg %></small>
           <% } %>
-
-          <input id=""type="text" placeholder="Apellido" name="lastname" class="input-form"><br>
+          <br>
+          <input type="text" placeholder="Apellido" name="lastname" id='lastname' class="input-form">
+          <small class="error" id="lastnameErrors"></small>
           <% if(locals.errors && errors.lastname) { %>
             <small class="error"><%= errors.lastname.msg %></small>
           <% } %>
-
-          <input id="" type="email" placeholder="Email" name="email" class="input-form"><br>
+          <br>
+          <input type="email" placeholder="Email" name="email" id='email' class="input-form">
+          <small class="error" id="emailErrors"></small>
           <% if(locals.errors && errors.email) { %>
             <small class="error"><%= errors.email.msg %></small>
           <% } %>
-
-          <input id="" type="password" placeholder="Contraseña" name="pass1"  class="input-form"><br>
+          <br>
+          <input type="password" placeholder="Contraseña" name="pass1" id="pass1" class="input-form">
+          <small class="error" id="pass1Errors"></small>
           <% if(locals.errors && errors.pass1) { %>
             <small class="error"><%= errors.pass1.msg %></small>
           <% } %>
-
-          <input id="" type="password" placeholder="Repita su contraseña" name="pass2"  class="input-form">
+          <br>
+          <input type="password" placeholder="Repita su contraseña" name="pass2" id="pass2" class="input-form">
+          <small class="error" id="pass2Errors"></small>
           <% if(locals.errors && errors.pass2) { %>
             <small class="error"><%= errors.pass2.msg %></small>
           <% } %>
