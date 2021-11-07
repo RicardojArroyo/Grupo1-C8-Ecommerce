@@ -2,7 +2,7 @@ const { check, body } = require('express-validator');
 const db = require('../database/models');
 
 module.exports = [
-    check('name').notEmpty().withMessage('Debes ingresar tu nombre'),
+    check('name').notEmpty().withMessage('Debes ingresar tu nombre').isLength({min: 2}).withMessage('Debe tener como mínimo 2 caracteres'),
     check('lastname').notEmpty().withMessage('Debes ingresar tu apellido'),
     check('email').notEmpty().withMessage('Debes ingresar un email').bail().isEmail().withMessage('Debes ingresar un email válido'),
     body('email').custom(value => {
