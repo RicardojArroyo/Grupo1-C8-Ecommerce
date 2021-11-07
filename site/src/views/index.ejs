@@ -9,124 +9,17 @@
         <%- include('partials/carrousel.ejs') %> 
 
         <div class="main">
-          <h2>PRODUCTOS DESTACADOS</h2>
-          <div class="row">
-            <div class="column">
-              <div class="card">
-                <a href="product/productDetail"><img src="/images/categoria/Living/sofa1-1.jpg" alt="Mueble de Dormitorio"
-                    style="width:100%"></a>
-                <div class="container">
-                  <h2>Living</h2>
-                  <p class="title">Precio de lista: </p>
-                  <p class="efectivo"> Efectivo: </p>
-                  <a href="product/carrito"><button class="button">Agregar Carrito</button></a>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="card">
-                <img src="/images/categoria/Living/muebles-del-sofá-47055383.jpg" alt="Living" style="width: 100%">
-                <div class="container">
-                  <h2>Living</h2>
-                  <p class="title">Precio de lista: </p>
-                  <p class="efectivo"> Efectivo: </p>
-                  <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <img src="/images/categoria/Dormitorio/embroma-el-sitio-con-muebles-amarillos-98865815.jpg"
-                  alt="Mueble dormitorio" style="width:100%">
-                <div class="container">
-                  <h2>Dormitorio</h2>
-                  <p class="title">Precio de lista: </p>
-                  <p class="efectivo"> Efectivo: </p>
-                  <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <img src="/images/categoria/Dormitorio/muebles-del-dormitorio-854485.jpg" alt="Mueble dormitorio"
-                  style="width: 100%">
-                <div class="container">
-                  <h2>Dormitorio</h2>
-                  <p class="title">Precio de lista: </p>
-                  <p class="efectivo"> Efectivo: </p>
-                  <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="column">
-                <div class="card">
-                  <img src="/images/categoria/Living/muebles-y-lámpara-modernos-18385287.jpg" alt="Living"
-                    style="width:100%">
-                  <div class="container">
-                    <h2>Living</h2>
-                    <p class="title">Precio de lista: </p>
-                    <p class="efectivo"> Efectivo: </p>
-                    <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="card">
-                  <img src="/images/categoria/Comedor/diseño-interior-19281957.jpg" alt="Mueble Comedor"
-                    style="width:100%">
-                  <div class="container">
-                    <h2>Comedor</h2>
-                    <p class="title">Precio de lista: </p>
-                    <p class="efectivo"> Efectivo: </p>
-                    <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                  </div>
-                </div>
-              </div>
+          <%- include('partials/cards.ejs') %> 
               <div>
                 <p><button class="buttonProductos">VER TODOS LOS PRODUCTOS</button></p>
               </div>
-              <div class="column">
-                <div class="card">
-                  <img src="/images/categoria/Comedor/55874217.jpg" alt="Mueble Comedor" style="width:100%">
-                  <div class="container">
-                    <h2>Comedor</h2>
-                    <p class="title">Precio de lista: </p>
-                    <p class="efectivo"> Efectivo: </p>
-                    <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                  </div>
-                </div>
-              </div>
 
-              <div class="column">
-                <div class="card">
-                  <img src="/images/categoria/Comedor/comedor-moderno-8870099.jpg" alt="Mueble Comedor"
-                    style="width:100%">
-                  <div class="container">
-                    <h2>Comedor</h2>
-                    <p class="title">Precio de lista: </p>
-                    <p class="efectivo"> Efectivo: </p>
-                    <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="card">
-                  <img src="/images/categoria/Living/muebles-viejos-en-el-palacio-de-versalles-15372441.jpg"
-                    alt="Living" style="width:100%">
-                  <div class="container">
-                    <h2>Living</h2>
-                    <p class="title">Precio de lista: </p>
-                    <p class="efectivo"> Efectivo: </p>
-                    <a href="/carrito"><button class="button">Agregar Carrito</button></a>
-                  </div>
-                </div>
-              </div>
+              <%- include('partials/tarjetitas.ejs') %>
+              
+            <%- include('partials/sliderofer.ejs') %>  
             </div>
+      
+
 
       </main>
       <%- include('partials/footer.ejs') %>

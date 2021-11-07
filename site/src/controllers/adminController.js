@@ -1,4 +1,5 @@
 let { validationResult } = require('express-validator');
+const fs = require("fs");
 let db = require('../database/models');
 
 module.exports = {
@@ -8,11 +9,14 @@ module.exports = {
         })
     },
     products: (req, res) => {
-        db.Product.findAll().then(products => {
+        db.Product.findAll({
+            include: [{association: 'category'}]
+        })
+        .then(products => {
             res.render('admin/adminProducts', {
                 products,
                 session: req.session
-            })
+            });
         })
     },
     viewCreate: (req, res) => {
@@ -41,64 +45,42 @@ module.exports = {
                 })
             }
 
+            let { productName, description, category, measures, price, discount, origin  } = req.body
+
             db.Product.create({
                 productName,
                 description,
                 categoryId: category,
                 measures,
                 price,
+                discount,
                 origin,
-                discount
+                
             })
             .then(product => {
                 if(arrayImages.length > 0) {
                     let images = arrayImages.map(image => {
                         return {
                             image: image,
-                            productId: product.id
-                        }
-                    })
+                            productId: product.id,
+                        };
+                    });
                     db.ProductImg.bulkCreate(images)
                     .then(() => res.redirect('/admin/products'))
                     .catch(err => console.log(err));
-                }
-            })
-
-
-            /* let lastId = 1;
-
-            getProducts.forEach(producto => {
-                if (producto.id > lastId) {
-                    lastId = producto.id
-                }
+                } else {
+                    db.ProductImages.create({
+                      image: "default-image.png",
+                      productId: product.id,
+                    })
+                      .then(() => res.redirect("/admin/products"))
+                      .catch((err) => console.log(err));
+                    }
             });
 
-            let arrayImages = [];
-            if (req.files) {
-                req.files.forEach(image => {
-                    arrayImages.push(image.filename);
-                })
-            }
-
-            let nuevoProducto = {
-                id: lastId + 1,
-                productName: req.body.productName,
-                description: req.body.description,
-                category: req.body.category,
-                measures: req.body.measures,
-                price: req.body.price,
-                origin: req.body.origin,
-                availability: req.body.availability,
-                image: arrayImages.length > 0 ? arrayImages : 'default-image.jpg'
-            }
-
-            getProducts.push(nuevoProducto);
-
-            writeProductsJson(getProducts);
-
-            res.redirect('/admin/products'); */
         } else {
             res.render('admin/adminCreate', {
+                categories,
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
@@ -106,17 +88,27 @@ module.exports = {
         }
     },
     viewEdit: (req, res) => {
-        let producto = getProducts.find(producto => {
-            return producto.id === +req.params.id;
-        })
+        let categoriesPromise = db.Category.findAll()
+        let productPromise = db.Product.findByPk(req.params.id)
 
-        res.render('admin/adminEdit', {
-            producto,
-            session: req.session
-        });
+        Promise.all([categoriesPromise, productPromise])
+        .then(([categories, product]) => {
+            res.render('admin/adminEdit', {
+                categories,
+                product,
+                session: req.session
+            });
+        })
     },
     edit: (req, res) => {
         let errors = validationResult(req);
+        if (req.fileValidatorError) {
+            let image = {
+                param: 'image',
+                msg: req.fileValidatorError
+            };
+            errors.push(image)
+        }
 
         if (errors.isEmpty()) {
             let arrayImages = [];
@@ -126,47 +118,74 @@ module.exports = {
                 })
             }
 
-            getProducts.forEach(producto => {
-                if (producto.id === +req.params.id) {
-                    producto.id = producto.id,
-                        producto.productName = req.body.productName,
-                        producto.description = req.body.description,
-                        producto.category = req.body.category,
-                        producto.measures = req.body.measures,
-                        producto.price = req.body.price,
-                        producto.origin = req.body.origin,
-                        producto.availability = req.body.availability,
-                        producto.image = arrayImages.length > 0 ? arrayImages : producto.image
+            db.Product.update({
+                productName: req.body.productName,
+                description: req.body.description,
+                categoryId: req.body.category,
+                measures: req.body.measures,
+                price: req.body.price,
+                discount: req.body.discount,
+                origin: req.body.origin,
+                
+            }, {
+                where: {
+                    id: req.params.id
                 }
             })
-
-            writeProductsJson(getProducts);
-
-            res.redirect('/admin/products');
-        } else {
-            let producto = getProducts.find(producto => {
-                return producto.id === +req.params.id;
+            .then(result => {
+                if(result) {
+                    if(arrayImages.length > 0) {
+                        let images = arrayImages.map(image => {
+                            return {
+                                image: image,
+                                productId: req.params.id
+                            }
+                        })
+                        db.ProductImg.findAll({
+                            where: { productId: req.params.id }
+                        })
+                        .then(() => {
+                            db.ProductImg.bulkCreate(images)
+                            .then(res.redirect('admin/products'))
+                        })
+                        .catch(err => res.send(err))
+                    }
+                    res.redirect("/admin/products");
+                }
             })
-            res.render('admin/adminEdit', {
-                producto,
-                errors: errors.mapped(),
-                old: req.body,
-                session: req.session
+        } else {
+            let categoriesPromise = db.Category.findAll()
+            let productPromise = db.Product.findByPk(req.params.id)
+
+            Promise.all([categoriesPromise, productPromise])
+            .then(([categories, product]) => {
+                res.render('admin/adminEdit', {
+                    categories,
+                    product,
+                    session: req.session,
+                    old: req.body,
+                    errors: errors.mapped()
+                });
             })
         }
-
-
     },
     deleteProduct: (req, res) => {
-        getProducts.forEach(producto => {
-            if (producto.id === +req.params.id) {
-                let productoAEliminar = getProducts.indexOf(producto);
-                getProducts.splice(productoAEliminar, 1);
+        db.ProductImg.destroy({
+            where: {
+                productId: req.params.id
             }
         })
-
-        writeProductsJson(getProducts);
-
-        res.redirect('/admin/products');
+        .then(() => {
+            db.Product.destroy({
+                where: {
+                    id: req.params.id
+                },
+                include: [{association: 'images'}]
+            })
+            .then(() => {
+                res.redirect('/admin/products')
+            })
+        })
+        .catch(err => console.log(err));
     }
 }

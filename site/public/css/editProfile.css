@@ -121,6 +121,30 @@ label {
     box-shadow: -5px -5px 10px rgb(255, 255, 255, 0.7);
     background: linear-gradient(285deg, rgba(255,255,255,0.5) 0%,  rgba(43, 236, 124, 0.5) 50%);
 }
+.buttom-container, .btn-reset, .btn-cancelar {
+    align-items: center; 
+    text-align: center;
+    padding: 9Px;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    height: 2.5rem;
+    text-transform: uppercase;
+    width: 8rem;
+    font-size: 13px;
+}
+.btn-cancelar {
+    background:  linear-gradient(45deg, rgba(255,255,255,1) 0%,  #d4af37 50%);
+    color: rgb(8 1 1);
+    font-weight: bold;
+}
+
+.btn-cancelar:hover {
+    color: rgb(172, 172, 172);
+    box-shadow: -5px -5px 10px rgb(255, 255, 255, 0.7);
+    background: linear-gradient(285deg, rgba(255,255,255,0.5) 0%,  rgba(43, 236, 124, 0.5) 50%);
+}
+
 
 /*check*/
 

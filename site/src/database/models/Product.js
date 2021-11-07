@@ -32,8 +32,8 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         discount: {
-            type: dataTypes.INTEGER(11),
-            allowNull: false
+            type: dataTypes.INTEGER,
+           
         }
     }
     let config = {
