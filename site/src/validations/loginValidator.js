@@ -6,7 +6,7 @@ module.exports = [
     check('email').notEmpty().withMessage('Debes ingresar un email').bail().isEmail().withMessage('Debes ingresar un email válido'),
     check('password').notEmpty().withMessage('Debes ingresar tu contraseña'),
 
-    body('custom').custom((value, {req}) => {
+    body('password').custom((value, {req}) => {
         return db.User.findOne({
             where: {
                 email: req.body.email
