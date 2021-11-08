@@ -109,3 +109,7 @@ margin: auto;}
 .login small {
     color: red;
 }
+
+form.card a {
+    margin-bottom: 30px;
+}
