@@ -94,8 +94,9 @@
 
 @media screen and (min-width: 320px) and (max-width: 425px) {
     .login .img {
-width: 35%;
-margin: auto;}
+        width: 35%;
+        margin: auto;
+    }
 
 }
 .login label.recordar {

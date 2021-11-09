@@ -12,6 +12,7 @@
                             <label for="productName">Nombre del producto: </label>
                             <input type="text" name="productName" id='productName'
                                 value="<%= locals.old && old.productName %>">
+                                <small class="error" id="productNameErrors"></small>
                             <% if(locals.errors && errors.productName) { %>
                                 <small class="error">
                                     <%= errors.productName.msg %>
@@ -25,16 +26,15 @@
                                 <small class="error">
                                     <%= errors.price.msg %>
                                 </small>
-                                <% } %>
+                            <% } %>
                         </div>
                         <div class="input-form">
                             <label for="discount">Descuento: </label>
-                            <input type="number" name="discount" id='discount'
-                                value="<%= locals.old && old.discount %>">
-                            <% if(locals.errors && errors.discount) { %>
-                                <small class="error">
-                                    <%= errors.discount.msg %>
-                                </small>
+                            <input type="number" name="discount" id='discount' value="<%= locals.old && old.discount %>">
+                                <% if(locals.errors && errors.discount) { %>
+                                    <small class="error">
+                                        <%= errors.discount.msg %>
+                                    </small>
                                 <% } %>
                         </div>
                         <div class="input-form">
@@ -49,16 +49,17 @@
                         </div>
                         <div class="input-form">
                             <label>Categoría: </label>
-                            <select name="category" id="">
+                            <select name="category" id="category">
                                 <option selected hidden value="">Categoría</option>
                                 <% categories.forEach(category=> { %>
-                                    <option value="<%= category.id %>" <%= locals.old && old.category == category.name ? "selected" : null %> ><%- category.name %></option>
+                                    <option value="<%= category.id %>" <%=locals.old && old.category==category.name ? "selected" : null %> ><%- category.name %></option>
                                     <% }) %>
                             </select>
                         </div>
                         <div class="input-form">
                             <label for="measures">Medidas: </label>
                             <input type="text" name="measures" id='measures'>
+                            <small class="error" id="measuresErrors"></small>
                         </div>
                         <div class="input-form">
                             <label for="origin">Origen: </label>
@@ -79,6 +80,7 @@
                     </form>
                 </div>
             </main>
+    <script src="../../../js/validations/adminCreateValidator.js"></script>
     </body>
 
 </html>
