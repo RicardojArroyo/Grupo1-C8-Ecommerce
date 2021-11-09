@@ -82,8 +82,7 @@
 }
 
 .descripcionimp span{
-    margin-left: 8px;
-    color: red;    
+    margin-left: 8px;    
 }
 
 .descripcionimp span #off{
@@ -116,7 +115,7 @@
     color: #fff;
 }
 
-.button-group .detalles:hover{
+.button-group .comprar:hover{
     background-color: goldenrod;
     transition: 0.6s ease;    
 }
