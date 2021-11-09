@@ -43,7 +43,7 @@ footer .content .middle{
 footer .content .middle a{
   line-height: 32px;
 }
-footer .content .right input[type="text"]{
+footer .content .right input[type="email"]{
   height: 45px;
   width: 100%;
   outline: none;
