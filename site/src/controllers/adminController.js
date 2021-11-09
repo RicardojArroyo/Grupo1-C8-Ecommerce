@@ -79,13 +79,12 @@ module.exports = {
             });
 
         } else {
-            
-                res.render('admin/adminCreate', {
-                    categories,
-                    errors: errors.mapped(),
-                    old: req.body,
-                    session: req.session
-                })       
+            res.render('admin/adminCreate', {
+                categories,
+                errors: errors.mapped(),
+                old: req.body,
+                session: req.session
+            }) 
         }
     },
     viewEdit: (req, res) => {
