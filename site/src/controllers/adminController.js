@@ -10,14 +10,14 @@ module.exports = {
     },
     products: (req, res) => {
         db.Product.findAll({
-            include: [{association: 'category'}]
+            include: [{ association: 'category' }]
         })
-        .then(products => {
-            res.render('admin/adminProducts', {
-                products,
-                session: req.session
-            });
-        })
+            .then(products => {
+                res.render('admin/adminProducts', {
+                    products,
+                    session: req.session
+                });
+            })
     },
     viewCreate: (req, res) => {
         db.Category.findAll().then(categories => {
@@ -25,7 +25,7 @@ module.exports = {
                 categories,
                 session: req.session
             })
-        })    
+        })
     },
     create: (req, res) => {
         let errors = validationResult(req);
@@ -45,7 +45,7 @@ module.exports = {
                 })
             }
 
-            let { productName, description, category, measures, price, discount, origin  } = req.body
+            let { productName, description, category, measures, price, discount, origin } = req.body
 
             db.Product.create({
                 productName,
@@ -55,37 +55,36 @@ module.exports = {
                 price,
                 discount,
                 origin,
-                
+
             })
-            .then(product => {
-                if(arrayImages.length > 0) {
-                    let images = arrayImages.map(image => {
-                        return {
-                            image: image,
+                .then(product => {
+                    if (arrayImages.length > 0) {
+                        let images = arrayImages.map(image => {
+                            return {
+                                image: image,
+                                productId: product.id,
+                            };
+                        });
+                        db.ProductImg.bulkCreate(images)
+                            .then(() => res.redirect('/admin/products'))
+                            .catch(err => console.log(err));
+                    } else {
+                        db.ProductImages.create({
+                            image: "default-image.png",
                             productId: product.id,
-                        };
-                    });
-                    db.ProductImg.bulkCreate(images)
-                    .then(() => res.redirect('/admin/products'))
-                    .catch(err => console.log(err));
-                } else {
-                    db.ProductImages.create({
-                      image: "default-image.png",
-                      productId: product.id,
-                    })
-                      .then(() => res.redirect("/admin/products"))
-                      .catch((err) => console.log(err));
+                        })
+                            .then(() => res.redirect("/admin/products"))
+                            .catch((err) => console.log(err));
                     }
-            });
+                });
 
         } else {
-            
-                res.render('admin/adminCreate', {
-                    categories,
-                    errors: errors.mapped(),
-                    old: req.body,
-                    session: req.session
-                })       
+            res.render('admin/adminCreate', {
+                categories,
+                errors: errors.mapped(),
+                old: req.body,
+                session: req.session
+            })
         }
     },
     viewEdit: (req, res) => {
@@ -93,13 +92,13 @@ module.exports = {
         let productPromise = db.Product.findByPk(req.params.id)
 
         Promise.all([categoriesPromise, productPromise])
-        .then(([categories, product]) => {
-            res.render('admin/adminEdit', {
-                categories,
-                product,
-                session: req.session
-            });
-        })
+            .then(([categories, product]) => {
+                res.render('admin/adminEdit', {
+                    categories,
+                    product,
+                    session: req.session
+                });
+            })
     },
     edit: (req, res) => {
         let errors = validationResult(req);
@@ -127,47 +126,47 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 origin: req.body.origin,
-                
+
             }, {
                 where: {
                     id: req.params.id
                 }
             })
-            .then(result => {
-                if(result) {
-                    if(arrayImages.length > 0) {
-                        let images = arrayImages.map(image => {
-                            return {
-                                image: image,
-                                productId: req.params.id
-                            }
-                        })
-                        db.ProductImg.findAll({
-                            where: { productId: req.params.id }
-                        })
-                        .then(() => {
-                            db.ProductImg.bulkCreate(images)
-                            .then(res.redirect('admin/products'))
-                        })
-                        .catch(err => res.send(err))
+                .then(result => {
+                    if (result) {
+                        if (arrayImages.length > 0) {
+                            let images = arrayImages.map(image => {
+                                return {
+                                    image: image,
+                                    productId: req.params.id
+                                }
+                            })
+                            db.ProductImg.findAll({
+                                where: { productId: req.params.id }
+                            })
+                                .then(() => {
+                                    db.ProductImg.bulkCreate(images)
+                                        .then(res.redirect('admin/products'))
+                                })
+                                .catch(err => res.send(err))
+                        }
+                        res.redirect("/admin/products");
                     }
-                    res.redirect("/admin/products");
-                }
-            })
+                })
         } else {
             let categoriesPromise = db.Category.findAll()
             let productPromise = db.Product.findByPk(req.params.id)
 
             Promise.all([categoriesPromise, productPromise])
-            .then(([categories, product]) => {
-                res.render('admin/adminEdit', {
-                    categories,
-                    product,
-                    session: req.session,
-                    old: req.body,
-                    errors: errors.mapped()
-                });
-            })
+                .then(([categories, product]) => {
+                    res.render('admin/adminEdit', {
+                        categories,
+                        product,
+                        session: req.session,
+                        old: req.body,
+                        errors: errors.mapped()
+                    });
+                })
         }
     },
     deleteProduct: (req, res) => {
@@ -176,17 +175,17 @@ module.exports = {
                 productId: req.params.id
             }
         })
-        .then(() => {
-            db.Product.destroy({
-                where: {
-                    id: req.params.id
-                },
-                include: [{association: 'images'}]
-            })
             .then(() => {
-                res.redirect('/admin/products')
+                db.Product.destroy({
+                    where: {
+                        id: req.params.id
+                    },
+                    include: [{ association: 'images' }]
+                })
+                    .then(() => {
+                        res.redirect('/admin/products')
+                    })
             })
-        })
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
     }
 }
