@@ -8,7 +8,7 @@ module.exports = {
         db.Product.findAll({ //Encontra todos los productos
             where: { // donde
                 discount: { // el valor de la columna (database) "discount"
-                    [Op.gte]: 5 // sea mayor o igual a 5
+                    [Op.gte]: 0 // sea mayor o igual a 5
                 }
             },
             include: [{association: "images"}]
