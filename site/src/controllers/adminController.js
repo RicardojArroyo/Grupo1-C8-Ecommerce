@@ -84,7 +84,7 @@ module.exports = {
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
-            })
+            }) 
         }
     },
     viewEdit: (req, res) => {
