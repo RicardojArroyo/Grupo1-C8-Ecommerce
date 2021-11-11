@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <%- include ('../admin/adminHead.ejs') %>
 <body>
     <%- include ('../admin/adminHeader.ejs') %>
@@ -16,6 +16,7 @@
                     <th scope="col">Producto</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">Descuento</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Borrar</th>
                 </tr>
@@ -27,6 +28,7 @@
                         <td><%= producto.productName %></td>
                         <td><%= producto.category.name %></td>
                         <td><%= producto.price %></td>
+                        <td><%= producto.discount %></td>
                         <td><a href="/admin/edit/<%= producto.id %>"><div class="edit-button"><i class="fas fa-pen"></i></div></a></td>
                         <td>
                             <form action="/admin/delete/<%= producto.id %>?_method=DELETE" method="POST">

@@ -1,13 +1,14 @@
 const { carousel} = require("../data/dataBase");
 let db = require('../database/models');
 const { Op } = require('sequelize');
+const { products } = require("./adminController");
 
 module.exports = {
     index: (req, res) => {
         db.Product.findAll({ //Encontra todos los productos
             where: { // donde
                 discount: { // el valor de la columna (database) "discount"
-                    [Op.gte]: 5 // sea mayor o igual a 5
+                    [Op.gte]: 0 // sea mayor o igual a 5
                 }
             },
             include: [{association: "images"}]
@@ -22,8 +23,8 @@ module.exports = {
         })
         .catch(error => console.log(error))
     },
+    
   
-
     comprar: (req, res) => {
         res.render('comprar.ejs', {
             session: req.session

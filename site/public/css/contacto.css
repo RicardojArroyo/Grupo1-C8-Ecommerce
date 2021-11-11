@@ -3,9 +3,9 @@
 
 
 body.con{
-  height: 100%; 
+  height: 100%;
   font-family: 'Noto Sans', sans-serif;
-  background-image: url('/images/categoria/dormitorio/cama.jpg'); 
+  background-image: url("/site/public/images/fondoadmin1.jpg"); 
 }
 
 
@@ -21,7 +21,7 @@ body.con{
 }
 
 
-input .inputcontacto{
+.inputcontacto{
   background-color: #fbfbfb; 
   width: 408px; 
   height: 40px; 
@@ -35,7 +35,7 @@ input .inputcontacto{
 }
 
 
-textarea{
+.con textarea{
   background-color: #fbfbfb; 
   width: 405px; 
   height: 150px; 
@@ -129,3 +129,4 @@ p.con{
   outline:0;
   border: 1px solid #97d848;
 }
+

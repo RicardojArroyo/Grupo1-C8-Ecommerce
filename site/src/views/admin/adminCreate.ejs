@@ -1,62 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
-    <%- include ('../admin/adminHead.ejs') %>
-<body>
-    <%- include('../admin/adminHeader.ejs') %>
-    <main class="admin-main">
-        <div class="container">
-            <h2>Crear producto</h2>
-            <form action="/admin/create" method="POST" enctype="multipart/form-data">
-                <div class="input-form">
-                    <label for="productName">Nombre del producto: </label>
-                    <input type="text" name="productName" id='productName' value="<%= locals.old && old.productName %>">
-                    <% if(locals.errors && errors.productName) { %>
-                        <small class="error"><%= errors.productName.msg %></small>
-                    <% } %>
+<%- include ('../admin/adminHead.ejs') %>
+
+    <body>
+        <%- include('../admin/adminHeader.ejs') %>
+            <main class="admin-main">
+                <div class="container">
+                    <h2>Crear producto</h2>
+                    <form action="/admin/create" method="POST" enctype="multipart/form-data">
+                        <div class="input-form">
+                            <label for="productName">Nombre del producto: </label>
+                            <input type="text" name="productName" id='productName'
+                                value="<%= locals.old && old.productName %>">
+                                <small class="error" id="productNameErrors"></small>
+                            <% if(locals.errors && errors.productName) { %>
+                                <small class="error">
+                                    <%= errors.productName.msg %>
+                                </small>
+                                <% } %>
+                        </div>
+                        <div class="input-form">
+                            <label for="price">Precio: </label>
+                            <input type="text" name="price" id='price' value="<%= locals.old && old.price %>">
+                            <% if(locals.errors && errors.price) { %>
+                                <small class="error">
+                                    <%= errors.price.msg %>
+                                </small>
+                            <% } %>
+                        </div>
+                        <div class="input-form">
+                            <label for="discount">Descuento: </label>
+                            <input type="number" name="discount" id='discount' value="<%= locals.old && old.discount %>">
+                                <% if(locals.errors && errors.discount) { %>
+                                    <small class="error">
+                                        <%= errors.discount.msg %>
+                                    </small>
+                                <% } %>
+                        </div>
+                        <div class="input-form">
+                            <label for="description">Descripción: </label>
+                            <textarea name="description"
+                                id='description'><%= locals.old && old.productName %></textarea>
+                            <% if(locals.errors && errors.description) { %>
+                                <small class="error">
+                                    <%= errors.description.msg %>
+                                </small>
+                                <% } %>
+                        </div>
+                        <div class="input-form">
+                            <label>Categoría: </label>
+                            <select name="category" id="category">
+                                <option selected hidden value="">Categoría</option>
+                                <% categories.forEach(category=> { %>
+                                    <option value="<%= category.id %>" <%=locals.old && old.category==category.name ? "selected" : null %> ><%- category.name %></option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class="input-form">
+                            <label for="measures">Medidas: </label>
+                            <input type="text" name="measures" id='measures'>
+                            <small class="error" id="measuresErrors"></small>
+                        </div>
+                        <div class="input-form">
+                            <label for="origin">Origen: </label>
+                            <input type="text" name="origin" id='origin' value="<%= locals.old && old.productName %>">
+                            <% if(locals.errors && errors.origin) { %>
+                                <small class="error">
+                                    <%= errors.origin.msg %>
+                                </small>
+                                <% } %>
+                        </div>
+                        <div class="input-form">
+                            <label>Imagenes del producto</label>
+                            <input type="file" name="imgProduct" accept=".jpg, .jpeg, .png" multiple>
+                        </div>
+                        <div class="button-form">
+                            <button type="submit">Crear</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-form">
-                    <label for="price">Precio: </label>
-                    <input type="text" name="price" id='price' value="<%= locals.old && old.price %>">
-                    <% if(locals.errors && errors.price) { %>
-                        <small class="error"><%= errors.price.msg %></small>
-                    <% } %>
-                </div>
-                <div class="input-form">
-                    <label for="description">Descripción: </label>
-                    <textarea name="description" id='description'><%= locals.old && old.productName %></textarea>
-                    <% if(locals.errors && errors.description) { %>
-                        <small class="error"><%= errors.description.msg %></small>
-                    <% } %>
-                </div>
-                <div class="input-form">
-                    <label>Categoría: </label>
-                    <select name="category" id="">
-                        <option selected hidden value="">Categoría</option>
-                        <% categories.forEach(category => { %>
-                            <option value="<%= category.id %>" <%= locals.old && old.category == category.name ? "selected" : null %> ><%- category.name %></option>
-                        <% }) %>
-                    </select>
-                </div>
-                <div class="input-form">
-                    <label for="measures">Medidas: </label>
-                    <input type="text" name="measures" id='measures'>
-                </div>
-                <div class="input-form">
-                    <label for="origin">Origen: </label>
-                    <input type="text" name="origin" id='origin' value="<%= locals.old && old.productName %>">
-                    <% if(locals.errors && errors.origin) { %>
-                        <small class="error"><%= errors.origin.msg %></small>
-                    <% } %>
-                </div>
-                <div class="input-form">
-                    <label>Imagenes del producto</label>
-                    <input type="file" name="imgProduct" accept=".jpg, .jpeg, .png" multiple>
-                </div>
-                <div class="button-form">
-                    <button type="submit">Crear</button>
-                </div>
-            </form>
-        </div>
-    </main>
-</body>
+            </main>
+    <script src="../../../js/validations/adminCreateValidator.js"></script>
+    </body>
+
 </html>

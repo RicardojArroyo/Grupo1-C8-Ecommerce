@@ -8,43 +8,49 @@
 
   <main class="home">
     <div class="register">
-      <form action="/users/register" method="POST" class="card">
+      <form action="/users/register" method="POST" class="card" id="form">
         <h1>Crear Cuenta</h1>
         <div class="formulario">
-          <input type="text" placeholder="Nombre" name="name" id="nombre" required class="input-form"><br>
+          <input type="text" placeholder="Nombre" name="name" id="name" class="input-form">
+          <small class="error" id="nameErrors"></small>
           <% if(locals.errors && errors.name) { %>
             <small class="error"><%= errors.name.msg %></small>
           <% } %>
-
-          <input type="text" placeholder="Apellido" name="lastname" required class="input-form"><br>
+          <br>
+          <input type="text" placeholder="Apellido" name="lastname" id='lastname' class="input-form">
+          <small class="error" id="lastnameErrors"></small>
           <% if(locals.errors && errors.lastname) { %>
             <small class="error"><%= errors.lastname.msg %></small>
           <% } %>
-
-          <input type="email" placeholder="Email" name="email" required class="input-form"><br>
+          <br>
+          <input type="email" placeholder="Email" name="email" id='email' class="input-form">
+          <small class="error" id="emailErrors"></small>
           <% if(locals.errors && errors.email) { %>
             <small class="error"><%= errors.email.msg %></small>
           <% } %>
-
-          <input type="password" placeholder="Contraseña" name="pass1" required class="input-form"><br>
-          <% if(locals.errors && errors.pass) { %>
-            <small class="error"><%= errors.pass.msg %></small>
+          <br>
+          <input type="password" placeholder="Contraseña" name="pass1" id="pass1" class="input-form">
+          <small class="error" id="pass1Errors"></small>
+          <% if(locals.errors && errors.pass1) { %>
+            <small class="error"><%= errors.pass1.msg %></small>
           <% } %>
-
-          <input type="password" placeholder="Repita su contraseña" name="pass2" required class="input-form">
+          <br>
+          <input type="password" placeholder="Repita su contraseña" name="pass2" id="pass2" class="input-form">
+          <small class="error" id="pass2Errors"></small>
           <% if(locals.errors && errors.pass2) { %>
             <small class="error"><%= errors.pass2.msg %></small>
           <% } %>
-
+          <br>
           <div class="check">
-            <input type="checkbox" name="terms" id="recordar" class="checkbox"> 
+            <input type="checkbox" name="terms" id="terms" class="checkbox"> 
             <label for="terms">Acepto los términos y condiciones</label>
+            <small class="error" id="termsErrors"></small>
           </div>
           <% if(locals.errors && errors.terms) { %>
             <small class="error"><%= errors.terms.msg %></small>
           <% } %>
 
-          <button class="button button--positionRegister" onclick="validate()" id="button"
+          <button class="button button--positionRegister" id="button"
           type="submit">Registrarse</button>
           <a href="/users/login" class="login-link">Ya tengo una cuenta</a>
         </div>
@@ -55,6 +61,7 @@
   </main>
 
 
+  <script src="../../../js/validations/registerValidator.js"></script>
 </body>
 
 </html>

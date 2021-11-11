@@ -11,27 +11,35 @@
           <div>
             <h1> Iniciar Sesion</h1>
           </div>
-          <input class="card__input input--style" type="text" name="email" placeholder="E-mail" required>
+          <input class="card__input input--style" type="text" name="email" placeholder="E-mail" id="email">
+          <small class="error" id="emailErrors"></small>
           <% if(locals.errors && errors.email) { %>
-            <small class="error"><%= errors.email.msg %></small>
-          <% } %>
-          <input class="card__input input--style" type="password" name="password" id="" placeholder="Contraseña"
-            required>
-          <% if(locals.errors && errors.password) { %>
-              <small class="error"><%= errors.password.msg %></small>
-          <% } %>
-          <div class="check">
-            <input class="RecordarChecbox" type="checkbox" name="Recordar">
-            <label class="Recordar" for="Recordar">Recordarme</label>
-          </div>
-          <input type="submit" role="button" value="Ingresar" class="button button--positionIngresar">
-          
-          <a class="register-link" href="/users/register">¿No tienes una cuenta?</a>
+            <small class="error">
+              <%= errors.email.msg %>
+            </small>
+            <% } %>
+            <br>
+            <input class="card__input input--style" type="password" name="password" id="password" placeholder="Contraseña">
+            <small class="error" id="passwordErrors"></small>
+              <% if(locals.errors && errors.password) { %>
+                <small class="error">
+                  <%= errors.password.msg %>
+                </small>
+                <% } %>
+                <br>
+                  <div class="check">
+                    <input class="RecordarChecbox" type="checkbox" name="Recordar" required>
+                    <label class="Recordar" for="Recordar">Recordarme</label>
+                  </div>
+                  <input type="submit" role="button" value="Ingresar" class="button button--positionIngresar">
+
+                  <a class="register-link" href="/users/register">¿No tienes una cuenta?</a>
         </form>
       </div>
 
       <%- include('../partials/footer.ejs') %>
 
+        <script src="../../../js/validations/loginValidator.js"></script>
   </body>
 
 </html>

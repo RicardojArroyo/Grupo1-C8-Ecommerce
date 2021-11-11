@@ -11,9 +11,9 @@
     <nav class="navigation-bar" id="navigation-bar-mobile">
 
       <div class="user-icons-mobile">
-        <a href="http://localhost:3000/product/Carrito"><i class="fas fa-user"></i></a>
-        <a href="/product/carrito"><i class="fas fa-shopping-cart"></i></a>
-      </div>
+        <a href="/users/login"><i class="fas fa-user"></i></a>
+        <a href="/products/cart"><i class="fas fa-shopping-cart"></i></a>
+    </div> 
 
 
       <!-- elementos del menu (categorias) -->
@@ -72,9 +72,9 @@
     </div>
 
     <!-- Buscador escritorio -->
-    <form action="#" class="search-form-desktop">
+    <form action="/searchResult" method="GET" class="search-form-desktop">
       <div class="search-bar">
-        <input type="search" name="busqueda" id="">
+        <input type="text" name="busqueda" placeholder="Buscar producto" id="">
         <button type="submit"><i class="fas fa-search"></i></button>
       </div>
     </form>
