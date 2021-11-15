@@ -64,7 +64,7 @@ module.exports = {
         })
         .then( products => {
             res.render('cocina.ejs', {
-                sliderTitle: "Muebles de cocina",
+                sliderTitle: "Cocina",
               sliderProducts: products,
               carousel,
               session: req.session,
@@ -85,7 +85,7 @@ module.exports = {
         })
         .then( products => {
             res.render('comedor.ejs', {
-                sliderTitle: "Muebles de comedor",
+                sliderTitle: "Comedor",
               sliderProducts: products,
               carousel,
               session: req.session,
@@ -106,7 +106,7 @@ module.exports = {
         })
         .then( products => {
             res.render('dormitorio.ejs', {
-                sliderTitle: "Muebles de dormitorio",
+                sliderTitle: "Dormitorio",
               sliderProducts: products,
               carousel,
               session: req.session,
@@ -127,7 +127,7 @@ module.exports = {
         })
         .then( products => {
             res.render('living.ejs', {
-                sliderTitle: "Muebles de living",
+                sliderTitle: "Living",
               sliderProducts: products,
               carousel,
               session: req.session,
@@ -148,7 +148,7 @@ module.exports = {
         })
         .then( products => {
             res.render('oficina.ejs', {
-                sliderTitle: "Muebles de oficina",
+                sliderTitle: "Oficina",
               sliderProducts: products,
               carousel,
               session: req.session,
