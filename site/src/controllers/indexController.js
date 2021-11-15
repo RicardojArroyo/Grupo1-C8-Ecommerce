@@ -36,7 +36,7 @@ module.exports = {
         })
         .then(products => {
           res.render("productos.ejs", {
-              sliderTitle: "Ofertas especiales",
+              sliderTitle: "Productos",
               sliderProducts: products,
               carousel,
               session: req.session,
@@ -49,6 +49,110 @@ module.exports = {
     comprar: (req, res) => {
         res.render('comprar.ejs', {
             session: req.session
+        })
+    },
+    cocina: (req, res) => {
+        db.Product.findAll({
+            where: {
+                categoryId : 1
+            },
+            include: [
+                {
+                    association: "images"
+                },
+            ],
+        })
+        .then( products => {
+            res.render('cocina.ejs', {
+                sliderTitle: "Muebles de cocina",
+              sliderProducts: products,
+              carousel,
+              session: req.session,
+            })
+        })
+    },
+    
+    comedor: (req, res) => {
+        db.Product.findAll({
+            where: {
+                categoryId : 2
+            },
+            include: [
+                {
+                    association: "images"
+                },
+            ],
+        })
+        .then( products => {
+            res.render('comedor.ejs', {
+                sliderTitle: "Muebles de comedor",
+              sliderProducts: products,
+              carousel,
+              session: req.session,
+            })
+        })
+    },
+
+    dormitorio: (req, res) => {
+        db.Product.findAll({
+            where: {
+                categoryId : 3
+            },
+            include: [
+                {
+                    association: "images"
+                },
+            ],
+        })
+        .then( products => {
+            res.render('dormitorio.ejs', {
+                sliderTitle: "Muebles de dormitorio",
+              sliderProducts: products,
+              carousel,
+              session: req.session,
+            })
+        })
+    },
+
+    living: (req, res) => {
+        db.Product.findAll({
+            where: {
+                categoryId : 4
+            },
+            include: [
+                {
+                    association: "images"
+                },
+            ],
+        })
+        .then( products => {
+            res.render('living.ejs', {
+                sliderTitle: "Muebles de living",
+              sliderProducts: products,
+              carousel,
+              session: req.session,
+            })
+        })
+    },
+
+    oficina: (req, res) => {
+        db.Product.findAll({
+            where: {
+                categoryId : 5
+            },
+            include: [
+                {
+                    association: "images"
+                },
+            ],
+        })
+        .then( products => {
+            res.render('oficina.ejs', {
+                sliderTitle: "Muebles de oficina",
+              sliderProducts: products,
+              carousel,
+              session: req.session,
+            })
         })
     },
 

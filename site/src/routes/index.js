@@ -8,5 +8,10 @@ router.get('/comprar', cookieCheck, controller.comprar);
 router.get('/envios', cookieCheck, controller.envios);
 router.get('/contacto', cookieCheck, controller.contacto);
 router.get('/productos', cookieCheck, controller.productos);
+router.get('/cocina', cookieCheck, controller.cocina);
+router.get('/comedor', cookieCheck, controller.comedor);
+router.get('/dormitorio', cookieCheck, controller.dormitorio);
+router.get('/living', cookieCheck, controller.living);
+router.get('/oficina', cookieCheck, controller.oficina);
 
 module.exports = router;
