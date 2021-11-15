@@ -40,7 +40,7 @@
                         <div class="input-form">
                             <label for="description">Descripción: </label>
                             <textarea name="description"
-                                id='description'><%= locals.old && old.productName %></textarea>
+                                id='description'><%= locals.old && old.description %></textarea>
                             <% if(locals.errors && errors.description) { %>
                                 <small class="error">
                                     <%= errors.description.msg %>
@@ -60,6 +60,11 @@
                             <label for="measures">Medidas: </label>
                             <input type="text" name="measures" id='measures'>
                             <small class="error" id="measuresErrors"></small>
+                            <% if(locals.errors && errors.measures) { %>
+                                <small class="error">
+                                    <%= errors.measures.msg %>
+                                </small>
+                                <% } %>
                         </div>
                         <div class="input-form">
                             <label for="origin">Origen: </label>
@@ -73,6 +78,7 @@
                         <div class="input-form">
                             <label>Imagenes del producto</label>
                             <input type="file" name="imgProduct" accept=".jpg, .jpeg, .png" multiple>
+                            
                         </div>
                         <div class="button-crear">
                             <button type="submit"><a href="/admin/products">Cancelar</a></button>
