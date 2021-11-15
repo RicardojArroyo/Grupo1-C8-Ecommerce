@@ -10,20 +10,5 @@ module.exports = [
     check('measures').notEmpty().withMessage('Este campo no puede estar vacío'),
     check('origin').notEmpty().withMessage('Este campo no puede estar vacío'),
     
-    
-    body('productName')
-    .custom(value=>{
-            return db.Product.findOne({
-                where:{
-                    productName:value,
-                }
-            })
-            .then(nam =>{
-                if (nam){
-                    return Promise.reject("Ya existe un producto con ese nombre")
-                }
-            })
 
-        
-    })
 ]

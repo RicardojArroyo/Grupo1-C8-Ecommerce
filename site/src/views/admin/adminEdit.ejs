@@ -49,6 +49,9 @@
                 <div class="input-form">
                     <label for="measures">Medidas: </label>
                     <input type="text" name="measures" id='measures' value="<%= product.measures %>">
+                    <% if(locals.errors && errors.measures) { %>
+                        <small class="error"><%= errors.measures.msg %></small>
+                    <% } %>
                 </div>
                 <div class="input-form">
                     <label for="origin">Origen: </label>
