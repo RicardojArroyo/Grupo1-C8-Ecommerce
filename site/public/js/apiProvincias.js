@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
             : 0;
         });
         return provinces.forEach(province => {
-            $provinceList.innerHTML += `<option value="${province.id}">${province.nombre}</option>`
+            $provinceList.innerHTML += `<option value="${province.nombre}">${province.nombre}</option>`
         })
     })
     .catch(function (error){
