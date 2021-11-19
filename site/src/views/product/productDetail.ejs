@@ -9,7 +9,7 @@
         <div class="product-imgs">
           <div class="img-display">
             <div class="img-showcase">
-              <% producto.images.forEach(image => { %>
+              <% products.images.forEach(image => { %>
                 <img src="/images/products/<%= image.image %>" alt="sofa image">
               <% }) %>
             </div>
@@ -17,40 +17,40 @@
           <div class="img-select">
             <div class="img-item">
               <a href="#" data-id="1">
-                  <img src="/images/products/<%= producto.images[0] %>" alt="sofa image">
+                  <img src="/images/products/<%= products.images[0].image %>" alt="sofa image">
               </a>
             </div>
             <div class="img-item">
               <a href="#" data-id="2">
-                <img src="/images/products/<%= producto.images[1] %>" alt="sofa image">
+                <img src="/images/products/<%= products.images[1].image %>" alt="sofa image">
               </a>
             </div>
             <div class="img-item">
               <a href="#" data-id="3">
-                <img src="/images/products/<%= producto.images[2] %>" alt="sofa image">
+                <img src="/images/products/<%= products.images[2].image %>" alt="sofa image">
               </a>
             </div>
             <div class="img-item">
               <a href="#" data-id="4">
-                <img src="/images/products/<%= producto.images[3] %>" alt="sofa image">
+                <img src="/images/products/<%= products.images[3].image %>" alt="sofa image">
               </a>
             </div>
           </div>
         </div>
 
         <div class="product-content">
-          <h2 class="product-title"><%= producto.productName %></h2>
+          <h2 class="product-title"><%= products.productName %></h2>
           <div class="product-price1">
-            <p class="price">Precio: <span><%= producto.price %></span></p>
+            <p class="price">Precio: <span><%= products.price %></span></p>
           </div>
 
           <div class="product-detail">
-            <p><%= producto.description %></p>
+            <p><%= products.description %></p>
             <ul>
-              <li>Disponibilidad: <span><%= producto.availability %></span></li>
-              <li>Categoría: <span><%= producto.category %></span></li>
-              <li>Medidas: <span><%= producto.measures %></span></li>
-              <li>Origen: <span><%= producto.origin %></span></li>
+              <li>Disponibilidad: <span><%= products.availability %></span></li>
+              <li>Categoría: <span><%= products.category.name %></span></li>
+              <li>Medidas: <span><%= products.measures %></span></li>
+              <li>Origen: <span><%= products.origin %></span></li>
             </ul>
           </div>
 
