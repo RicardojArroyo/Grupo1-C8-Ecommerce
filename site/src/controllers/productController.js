@@ -1,10 +1,9 @@
 const { products, categories } = require('../data/dataBase');
 let db = require('../database/models');
 const { Op } = require("sequelize");
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 module.exports = {
-  productDetail: (req, res) => {
+   productDetail: (req, res) => {
     db.Product.findByPk(req.params.id, {
       include: {association : 'images'}
     })
@@ -12,6 +11,7 @@ module.exports = {
       res.send(product)
     })
   },
+
  
 
     carrito: (req, res) => {

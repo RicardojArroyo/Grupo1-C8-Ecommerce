@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let { detail, carrito, category } = require('../controllers/productController.js');
+let { detail, carrito, category, cocina, comedor } = require('../controllers/productController.js');
 
 
 /* GET - Detalle del producto elegido */
