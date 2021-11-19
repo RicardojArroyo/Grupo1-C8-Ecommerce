@@ -1,5 +1,4 @@
-const { check, body } = require('express-validator');
-const db = require("../database/models");
+const { check } = require('express-validator');
 
 module.exports = [
     check('productName').notEmpty().withMessage('Este campo no puede estar vacío').isLength({min: 5}).withMessage('Debe tener como mínimo 5 caracteres'),

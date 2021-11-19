@@ -54,7 +54,7 @@ module.exports = {
     detail: (req, res) => {
       let categoriesPromise = db.Category.findAll()
       let productPromise = db.Product.findByPk(+req.params.id, {
-        include: {association: 'images'}
+        include: [{association: 'images'}, {association: "category"}]
       })
 
       Promise.all([categoriesPromise, productPromise])
