@@ -16,7 +16,7 @@ body.con{
   border-radius: 10px;  
   padding-top: 30px;
   padding-bottom: 20px;  
-  background-color: #fbfbfb; 
+  background-color: #d9d9d9; 
   padding-left: 30px; 
 }
 
@@ -129,4 +129,18 @@ p.con{
   outline:0;
   border: 1px solid #97d848;
 }
+@media(max-width: 425px) {
+  .contact_form{  
+    width: 100%; 
+  }
+    .inputcontacto{
+      width: 90%;    
+    }
+    .con textarea{
+     width: 90%; 
+    }
+    button.con {
+    width: 90%;
+    }
+  }
 
