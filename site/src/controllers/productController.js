@@ -1,4 +1,3 @@
-const { products, categories } = require('../data/dataBase');
 let db = require('../database/models');
 const { Op } = require("sequelize");
 

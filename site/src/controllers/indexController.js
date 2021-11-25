@@ -1,4 +1,3 @@
-const { carousel} = require("../data/dataBase");
 let db = require('../database/models');
 const { Op } = require('sequelize');
 const { products } = require("./adminController");
@@ -18,7 +17,6 @@ module.exports = {
           res.render("index", {
               sliderTitle: "Ofertas especiales",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
@@ -38,7 +36,6 @@ module.exports = {
           res.render("productos.ejs", {
               sliderTitle: "Productos",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
@@ -66,7 +63,6 @@ module.exports = {
             res.render('cocina.ejs', {
                 sliderTitle: "Cocina",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
@@ -87,7 +83,6 @@ module.exports = {
             res.render('comedor.ejs', {
                 sliderTitle: "Comedor",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
@@ -108,7 +103,6 @@ module.exports = {
             res.render('dormitorio.ejs', {
                 sliderTitle: "Dormitorio",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
@@ -129,7 +123,6 @@ module.exports = {
             res.render('living.ejs', {
                 sliderTitle: "Living",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
@@ -150,7 +143,6 @@ module.exports = {
             res.render('oficina.ejs', {
                 sliderTitle: "Oficina",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
