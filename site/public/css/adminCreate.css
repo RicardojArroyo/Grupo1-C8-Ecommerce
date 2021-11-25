@@ -68,6 +68,13 @@ main.admin-main textarea {
     padding: 10px;
     height: 150px;
 }
+main.admin-main .button-crear {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
 
 main.admin-main button {
     height: 42px;

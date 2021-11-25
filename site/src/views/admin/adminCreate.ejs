@@ -67,6 +67,11 @@
                             <label for="measures">Medidas: </label>
                             <input type="text" name="measures" id='measures'>
                             <small class="error" id="measuresErrors"></small>
+                            <% if(locals.errors && errors.measures) { %>
+                                <small class="error">
+                                    <%= errors.measures.msg %>
+                                </small>
+                                <% } %>
                         </div>
                         <div class="input-form">
                             <label for="origin">Origen: </label>
@@ -82,7 +87,8 @@
                             <label>Imagenes del producto</label>
                             <input type="file" name="imgProduct" accept=".jpg, .jpeg, .png" multiple>
                         </div>
-                        <div class="button-form">
+                        <div class="button-crear">
+                            <button type="submit"><a href="/admin/products">Cancelar</a></button>
                             <button type="submit">Crear</button>
                         </div>
                     </form>

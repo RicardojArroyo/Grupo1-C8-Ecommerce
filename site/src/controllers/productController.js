@@ -2,7 +2,7 @@ let db = require('../database/models');
 const { Op } = require("sequelize");
 
 module.exports = {
-  productDetail: (req, res) => {
+   productDetail: (req, res) => {
     db.Product.findByPk(req.params.id, {
       include: {association : 'images'}
     })
@@ -10,6 +10,9 @@ module.exports = {
       res.send(product)
     })
   },
+
+ 
+
     carrito: (req, res) => {
       res.render('product/carrito', {
         session: req.session
@@ -50,7 +53,7 @@ module.exports = {
     detail: (req, res) => {
       let categoriesPromise = db.Category.findAll()
       let productPromise = db.Product.findByPk(+req.params.id, {
-        include: {association: 'images'}
+        include: [{association: 'images'}, {association: "category"}]
       })
 
       Promise.all([categoriesPromise, productPromise])

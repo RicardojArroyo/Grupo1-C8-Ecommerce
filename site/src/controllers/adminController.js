@@ -79,11 +79,13 @@ module.exports = {
                 });
 
         } else {
-            res.render('admin/adminCreate', {
-                categories,
-                errors: errors.mapped(),
-                old: req.body,
-                session: req.session
+            db.Category.findAll().then(categories => {
+                res.render('admin/adminCreate', {
+                    categories,
+                    old: req.body,
+                    session: req.session,
+                    errors: errors.mapped()
+                })
             })
         }
     },

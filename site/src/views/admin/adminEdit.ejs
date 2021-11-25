@@ -42,13 +42,16 @@
                     <select name="category" id="">
                         <option selected hidden value="">Categoría</option>
                         <% categories.forEach(category => { %>
-                            <option value="<%= category.id %>" <%= locals.old && old.category == category.name ? "selected" : null %> ><%- category.name %></option>
+                            <option value="<%= category.id %>" <%= locals.old && old.category == category.name ? "selected" : category.id == product.categoryId ? "selected" : null %> ><%- category.name %></option>
                         <% }) %>
                     </select>
                 </div>
                 <div class="input-form">
                     <label for="measures">Medidas: </label>
                     <input type="text" name="measures" id='measures' value="<%= product.measures %>">
+                    <% if(locals.errors && errors.measures) { %>
+                        <small class="error"><%= errors.measures.msg %></small>
+                    <% } %>
                 </div>
                 <div class="input-form">
                     <label for="origin">Origen: </label>

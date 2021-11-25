@@ -54,27 +54,13 @@
                         <div class="input-container">
                             <div class="input-flex">
                                 <label for="">Provincia: </label>
-                                <select name="province" class="input-select">
-                                    <option value="" hidden selected>Elija una provincia</option>
-                                    <option value="laRioja">La Rioja</option>
-                                    <option value="chaco">Chaco</option>
-                                    <option value="cordoba">Córdoba</option>
-                                    <option value="misiones">Misiones</option>
-                                    <option value="chubut">Chubut</option>
-                                </select>
+                                <p><%= user.province ? user.province : "------" %> </p>
                             </div>
                         </div>
                         <div class="input-container">
                             <div class="input-flex">
                                 <label for="">Localidad: </label>
-                                <select name="location" class="input-select">
-                                    <option value="" hidden selected>Elija una localidad</option>
-                                    <option value="localidad1">Localidad1</option>
-                                    <option value="localidad2">Localidad2</option>
-                                    <option value="localidad3">Localidad3</option>
-                                    <option value="localidad4">Localidad4</option>
-                                    <option value="localidad5">Localidad5</option>
-                                </select>
+                                <p><%= user.location ? user.location : "------" %> </p>
                             </div>
                         </div>
                         <div class="input-container">
