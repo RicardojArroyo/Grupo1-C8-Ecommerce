@@ -65,7 +65,115 @@ module.exports = {
                 session: req.session
           });
       }) 
-    }
+    },
+    orderBy: (req, res)=> {
+      if(req.params.id == "desc"){
+          db.Product.findAll({
+              include: [
+                  {association: "category"},
+                  {association: "brand"}
+              ],
+              order: [['price', 'DESC']]
+          })
+          .then(product => {
+              db.Product.findAll({
+                  include: [{
+                      association: "brand"
+                  }],
+                  where: {
+                      outstanding: 1
+                  }
+              })
+              .then(products => {
+                  let categoryPromise = db.Category.findAll()
+                  let brandPromise = db.Brand.findAll()
+  
+                  Promise.all([categoryPromise, brandPromise])
+                  .then(([categories, brands]) => {
+                      res.render("productsFilter", {
+                          titleBanner: "Pedi tu birra y te la llevamos a tu casa",
+                          titleSlider: "Destacados",
+                          product,
+                          categories,
+                          brands,
+                          destacadosSlider: products,
+                          session: req.session
+                      })
+                  })  
+              })
+          })
+      }else if(req.params.id == "asc"){
+          db.Product.findAll({
+              include: [
+                  {association: "category"},
+                  {association: "brand"}
+              ],
+              order: [['price', 'ASC']]
+          })
+          .then(product => {
+              db.Product.findAll({
+                  include: [{
+                      association: "brand"
+                  }],
+                  where: {
+                      outstanding: 1
+                  }
+              })
+              .then(products => {
+                  let categoryPromise = db.Category.findAll()
+                  let brandPromise = db.Brand.findAll()
+
+                  Promise.all([categoryPromise, brandPromise])
+                  .then(([categories, brands]) => {
+                      res.render("productsFilter", {
+                          titleBanner: "Pedi tu birra y te la llevamos a tu casa",
+                          titleSlider: "Destacados",
+                          product,
+                          categories,
+                          brands,
+                          destacadosSlider: products,
+                          session: req.session
+                      })
+                  })
+              })
+          })
+      }else  if(req.params.id == "discount"){
+          db.Product.findAll({
+              include: [
+                  {association: "category"},
+                  {association: "brand"}
+              ],
+              order: [['discount', 'DESC']],
+          })
+          .then(product => {
+              db.Product.findAll({
+                  include: [{
+                      association: "brand"
+                  }],
+                  where: {
+                      outstanding: 1
+                  }
+              })
+              .then(products => {
+                  let categoryPromise = db.Category.findAll()
+                  let brandPromise = db.Brand.findAll()
+
+                  Promise.all([categoryPromise, brandPromise])
+                  .then(([categories, brands]) => {
+                      res.render("productsFilter", {
+                          titleBanner: "Pedi tu birra y te la llevamos a tu casa",
+                          titleSlider: "Destacados",
+                          product,
+                          categories,
+                          brands,
+                          destacadosSlider: products,
+                          session: req.session
+                      })
+                  })
+              })
+          })
+      }
+  }
       /* let producto = getProducts.find(producto => {
         return producto.id === +req.params.id
       })
