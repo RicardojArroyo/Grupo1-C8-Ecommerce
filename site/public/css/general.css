@@ -20,6 +20,38 @@
 @import url('contacto.css');
 
 
+.dark-mode-button{
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 40%;
+    border: solid black 3px;
+}
+
+html.dark-mode{
+    filter: invert(100%);
+}
+
+html.dark-mode img{
+    filter: invert(100%);
+}
+
+html.dark-mode header{
+    filter: invert(100%);
+}
+
+html.dark-mode footer{
+    filter: invert(100%);
+}
+html.dark-mode .logo {
+    filter: invert(100%);
+}
+
+html.dark-mode .logofooter{
+    filter: invert(100%);
+}
 
 * {
     margin: 0;
