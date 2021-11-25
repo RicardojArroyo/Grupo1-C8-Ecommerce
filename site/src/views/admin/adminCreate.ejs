@@ -12,7 +12,7 @@
                             <label for="productName">Nombre del producto: </label>
                             <input type="text" name="productName" id='productName'
                                 value="<%= locals.old && old.productName %>">
-                                <small class="error" id="productNameErrors"></small>
+                            <small class="error" id="productNameErrors"></small>
                             <% if(locals.errors && errors.productName) { %>
                                 <small class="error">
                                     <%= errors.productName.msg %>
@@ -22,25 +22,29 @@
                         <div class="input-form">
                             <label for="price">Precio: </label>
                             <input type="text" name="price" id='price' value="<%= locals.old && old.price %>">
+                            <small class="error" id="priceErrors"></small>
                             <% if(locals.errors && errors.price) { %>
                                 <small class="error">
                                     <%= errors.price.msg %>
                                 </small>
-                            <% } %>
+                                <% } %>
                         </div>
                         <div class="input-form">
                             <label for="discount">Descuento: </label>
-                            <input type="number" name="discount" id='discount' value="<%= locals.old && old.discount %>">
-                                <% if(locals.errors && errors.discount) { %>
-                                    <small class="error">
-                                        <%= errors.discount.msg %>
-                                    </small>
+                            <input type="number" name="discount" id='discount'
+                                value="<%= locals.old && old.discount %>">
+                            <small class="error" id="discountErrors"></small>
+                            <% if(locals.errors && errors.discount) { %>
+                                <small class="error">
+                                    <%= errors.discount.msg %>
+                                </small>
                                 <% } %>
                         </div>
                         <div class="input-form">
                             <label for="description">Descripción: </label>
                             <textarea name="description"
                                 id='description'><%= locals.old && old.productName %></textarea>
+                            <small class="error" id="descriptionErrors"></small>
                             <% if(locals.errors && errors.description) { %>
                                 <small class="error">
                                     <%= errors.description.msg %>
@@ -50,9 +54,12 @@
                         <div class="input-form">
                             <label>Categoría: </label>
                             <select name="category" id="category">
+                            <small class="error" id="categoryErrors"></small>
                                 <option selected hidden value="">Categoría</option>
                                 <% categories.forEach(category=> { %>
-                                    <option value="<%= category.id %>" <%=locals.old && old.category==category.name ? "selected" : null %> ><%- category.name %></option>
+                                    <option value="<%= category.id %>" <%=locals.old && old.category == category.name
+                                        ? "selected" : null %> ><%- category.name %>
+                                    </option>
                                     <% }) %>
                             </select>
                         </div>
@@ -64,6 +71,7 @@
                         <div class="input-form">
                             <label for="origin">Origen: </label>
                             <input type="text" name="origin" id='origin' value="<%= locals.old && old.productName %>">
+                            <small class="error" id="originErrors"></small>
                             <% if(locals.errors && errors.origin) { %>
                                 <small class="error">
                                     <%= errors.origin.msg %>
@@ -80,7 +88,7 @@
                     </form>
                 </div>
             </main>
-    <script src="../../../js/validations/adminCreateValidator.js"></script>
+            <script src="../../../js/validations/productCreateValidator.js"></script>
     </body>
 
 </html>

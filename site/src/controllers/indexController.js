@@ -1,4 +1,3 @@
-const { carousel} = require("../data/dataBase");
 let db = require('../database/models');
 const { Op } = require('sequelize');
 const { products } = require("./adminController");
@@ -17,7 +16,6 @@ module.exports = {
           res.render("index", {
               sliderTitle: "Ofertas especiales",
               sliderProducts: products,
-              carousel,
               session: req.session,
             })
         })
