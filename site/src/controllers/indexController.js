@@ -1,6 +1,7 @@
 let db = require('../database/models');
 const { Op } = require('sequelize');
 const { products } = require("./adminController");
+const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 module.exports = {
@@ -159,5 +160,33 @@ module.exports = {
             session: req.session
         })
      },
+
+     search: (req, res) => {
+        db.Product.findAll({
+          where: {
+            [Op.or]: [
+              {
+                productName: {
+                  [Op.like]: `%${req.query.keywords}%`,
+                },
+              },
+              
+            ]
+          },
+          include: [            
+            {
+              association: "images",
+            },
+          ],
+        }).then((result) => {
+          res.render("results.ejs", {
+            result,
+            toThousand,
+            search: req.query.keywords,
+            session: req.session
+          });
+        });
+      
+	}
 
 };

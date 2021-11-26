@@ -3,6 +3,7 @@
     <%- include ('../admin/adminHead.ejs') %>
 <body>
     <%- include ('../admin/adminHeader.ejs') %>
-    <h2>Bienvenido Admin</h2>
+    <% if (typeof session.user != "undefined") { %>
+        <h5><%= session.user.nombre %> </h5>
 </body>
 </html>

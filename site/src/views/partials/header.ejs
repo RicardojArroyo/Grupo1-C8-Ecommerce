@@ -36,6 +36,13 @@
           
           <a href="/oficina">OFICINA</a>
         </li>
+        <% if (session.user && session.user.rol === 1) { %>
+          <li>
+            <a href="/admin">IR AL ADMIN</a>
+          </li>    
+        <% } %>
+
+  
       </ul>
 
     </nav>
@@ -67,16 +74,14 @@
     </nav>
 
     <!-- Icono del buscador en header mobil-->
-    <div class="search-icon" onclick="dropSearch()">
+    <div class="btn-search search-icon" onclick="dropSearch()">
       <i class="fas fa-search"></i>
     </div>
 
     <!-- Buscador escritorio -->
-    <form action="/searchResult" method="GET" class="search-form-desktop">
-      <div class="search-bar">
-        <input type="text" name="busqueda" placeholder="Buscar producto" id="">
-        <button type="submit"><i class="fas fa-search"></i></button>
-      </div>
+    <form action="/search" method="GET" id="search">
+      <input class="search" type="search" name="keywords" placeholder="Buscar productos, marcas y más" />
+      <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
     </form>
 
     <div class="user-icons-desktop">
