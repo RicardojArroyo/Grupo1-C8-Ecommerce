@@ -17,6 +17,7 @@ main.admin-main-product table tbody tr td a div.edit-button {
 main.admin-main-product table tbody tr td button.delete-button {
     background-color: red;
     color: white;
+    border-width: 0px;
 }
 
 main.admin-main-product .head-bar {

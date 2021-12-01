@@ -32,14 +32,29 @@
                         <td><a href="/admin/edit/<%= producto.id %>"><div class="edit-button"><i class="fas fa-pen"></i></div></a></td>
                         <td>
                             <form action="/admin/delete/<%= producto.id %>?_method=DELETE" method="POST">
-                                <button type="submit" class="delete-button"><i class="fas fa-trash"></i></button>
+                                <button class="delete-button"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
+                    <div class="modal-background">
+                        <div class="modal">
+                            <p>Estas seguro de que desea eliminar este producto?</p>
+                            <p>Esta acción no se puede deshacer</p>
+                            <p><%= producto.id %></p>
+                            <div class="modal-button">
+                                <form action="/admin/delete/<%= producto.id %>?_method=DELETE" method="POST">
+                                    <button type="submit" id="button-delete">Eliminar</button>
+                                </form>
+                                <button id="button-cancel"><a href="/admin/products">Cancelar</a></button>
+                            </div>
+                        </div>
+                    </div>
                 <% }) %> 
             </tbody>
         </table>
+        <%- include('../partials/botonSubir.ejs') %>
     </main>
-    <%- include('../partials/botonSubir.ejs') %>
+    <script src="/js/botonSubir.js"></script>
+    <script src="/js/modalWindow.js"></script>
 </body>
 </html>

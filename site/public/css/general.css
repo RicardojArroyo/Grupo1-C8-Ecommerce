@@ -17,6 +17,8 @@
 @import url('sliderofer.css');
 @import url('cards.css');
 @import url('contacto.css');
+@import url('modalWindow.css');
+@import url('botonSubir.css');
 
 
 .dark-mode-button{
@@ -25,8 +27,9 @@
     left: 20px;
     padding: 1px;
     border-radius: 10px;
-    background: white;
-    border: solid black 3px;
+    background: black;
+    border: solid goldenrod 3px;
+    color: white;
 }
 
 html.dark-mode{
@@ -52,6 +55,15 @@ html.dark-mode .logofooter{
     filter: invert(100%);
 }
 
+html.dark-mode .butprod{
+    filter: invert(100%);
+}
+
+
+html.dark-mode .ir-arriba{
+    filter: invert(100%);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -69,9 +81,9 @@ html.dark-mode .logofooter{
     font-size: 13px;
 }
 
-.comoenvios{
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+@media screen and (min-width: 768px) {
+    .comoenvios{
+        margin: 5% 15%;
+    }
 }
-
-
