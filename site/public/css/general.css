@@ -27,8 +27,9 @@
     left: 20px;
     padding: 1px;
     border-radius: 10px;
-    background: white;
-    border: solid black 3px;
+    background: black;
+    border: solid goldenrod 3px;
+    color: white;
 }
 
 html.dark-mode{
