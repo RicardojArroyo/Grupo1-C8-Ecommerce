@@ -1,0 +1,13 @@
+<div class="modal-background">
+    <div class="modal">
+        <p>Estas seguro de que desea eliminar este producto?</p>
+        <p>Esta acción no se puede deshacer</p>
+        <p><%= id %> </p>
+        <div class="modal-button">
+            <form action="/admin/delete/<%= id %>?_method=DELETE" method="POST">
+                <button type="submit" id="button-delete">Eliminar</button>
+            </form>
+            <button id="button-cancel"><a href="/admin/products">Cancelar</a></button>
+        </div>
+    </div>
+</div>
