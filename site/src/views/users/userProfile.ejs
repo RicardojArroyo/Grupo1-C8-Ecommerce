@@ -7,8 +7,7 @@
 
     <div class="form-container">
         <h2 class="perfile">Mis datos</h2>
-        <hr>
-                <div class="profile-box">
+                 <div class="profile-box">
                     <h3 class="profile-subtitle">Avatar</h3>
                     <div class="avatar">
                         <img src="/images/usersAvatar/<%= user.avatar %>" alt="">
@@ -73,6 +72,11 @@
                 </div> 
                 <div class="button-container">
                     <a href="/users/profile/edit/<%= user.id %>"><button class="btn btn-edit">Editar</button></a>
+                    <div>
+                        <label for="bad-btn-submit" class="btn btn-delete">Eliminar perfil</label>
+                        <form id="formDelete" action="/users/profile/delete/<%= user.id%>?_method=DELETE" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta?')">
+                        <button id="bad-btn-submit" style="display:none" type="submit"></button>
+                    </div>
                 </div>
     </div>
     <%- include('../partials/footer.ejs') %>
