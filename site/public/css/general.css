@@ -55,6 +55,15 @@ html.dark-mode .logofooter{
     filter: invert(100%);
 }
 
+html.dark-mode .butprod{
+    filter: invert(100%);
+}
+
+
+html.dark-mode .ir-arriba{
+    filter: invert(100%);
+}
+
 * {
     margin: 0;
     padding: 0;
