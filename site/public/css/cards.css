@@ -152,7 +152,7 @@
     animation-direction: alternate;
   }
   
-  @keyframes slidein {
+/*   @keyframes slidein {
     from {
       margin-left: 8%;
       width: 100%
@@ -163,3 +163,4 @@
       width: 150%;
     }
   }
+ */
