@@ -13,27 +13,27 @@
                         <h1>Editar usuario #<%= user.id %></h1>
                         <form action="/admin/users/edit/<%=user.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                             <div class="form caja-agregar">
-                                Nombre:<label for="name"><input class="input style-admin" type="text" name="name"
+                                Nombre:<label for="name"><input readonly class="input style-admin" type="text" name="name"
                                         id="name" placeholder="Nombre" value="<%= locals.old && old.name ? old.name : user.name %>" />
                                         <% if (locals.errors && errors.name) { %>
                                                 <small class="text-danger"><%= errors.name.msg %> </small>
                                         <% } %>
                                 </label>
-                                Apellido:<label for="last_name"><input class="input style-admin" type="text"
+                                Apellido:<label for="last_name"><input readonly class="input style-admin" type="text"
                                         name="last_name" id="last-name" placeholder="Apellido"
                                         value="<%= locals.old && old.lastname ? old.lastname : user.lastname %>" />
                                         <% if (locals.errors && errors.lastname) { %>
                                                 <small class="text-danger"><%= errors.lastname.msg %> </small>
                                         <% } %>
                                 </label>
-                                Email:<label for="email"><input class="input style-admin" type="text" name="email"
+                                Email:<label for="email"><input readonly class="input style-admin" type="text" name="email"
                                         id="email" placeholder="Email" value="<%= locals.old && old.email ? old.email : user.email %>" />
                                         
                                 </label>
-                                Telefono:<label for="phone"><input class="input style-admin" type="text" name="phone"
+                                Telefono:<label for="phone"><input readonly class="input style-admin" type="text" name="phone"
                                         id="phone" placeholder="Telefono" value="<%= user.tel %>" />
                                 </label>
-                                Direccion:<label for="address"><input class="input style-admin" type="text"
+                                Direccion:<label for="address"><input readonly class="input style-admin" type="text"
                                         name="address" id="address" placeholder="Direccion"
                                         value="<%= user.street %>" />
                                 </label>
@@ -48,17 +48,17 @@
                                                 <% } %>
                                     </select>
                                 </label>
-                                Provincia:<label for="province"><input class="input style-admin" type="text"
+                                Provincia:<label for="province"><input readonly class="input style-admin" type="text"
                                         name="province" id="province" placeholder="Provincia"
                                         value="<%= user.province %>" />
                                 </label>
-                                Ciudad:<label for="city"><input class="input style-admin" type="text" name="city"
+                                Ciudad:<label for="city"><input readonly class="input style-admin" type="text" name="city"
                                         id="city" placeholder="Ciudad" value="<%= user.location %>" />
                                 </label>
-                                Avatar:<label for="images-files"><input class="input style-admin" type="file" name="avatar"
+                                Avatar:<label for="images-files"><input readonly class="input style-admin" type="file" name="avatar"
                                         id="images-files" placeholder="Avatar" value="<%= user.avatar %>" />
                                 </label>
-                                DNI:<label for="dni"><input class="input style-admin" type="text" name="dni" id="dni"
+                                DNI:<label for="dni"><input readonly class="input style-admin" type="text" name="dni" id="dni"
                                         placeholder="DNI" value="<%= user.dni %>" />
                                 </label>                               
                                 <button type="submit" class="btn-admin style-admin">

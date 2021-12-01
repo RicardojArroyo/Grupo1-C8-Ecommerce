@@ -295,10 +295,12 @@ module.exports = {
         } else {
             db.User.findByPk(req.params.id).then((user) => {
                 res.render("admin/users/editUser", {
+                    
                     user,
                     errors: errors.mapped(),
                     old: req.body,
                     session: req.session,
+                    
                 });
             });
         }
