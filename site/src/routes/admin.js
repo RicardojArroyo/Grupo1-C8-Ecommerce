@@ -54,7 +54,7 @@ router.get('/users', userAdminCheck, users);
 
 /* Edit user */
 router.get('/users/edit/:id', userAdminCheck, userEdit);
-router.put('/users/edit/:id', avatar.single('avatar'), userEditValidator,  userAdminCheck, userUpdate);
+router.put('/users/edit/:id',   userAdminCheck, userUpdate);
 
 /* Delete user */
 router.delete('/users/delete/:id', userAdminCheck, userDestroy);

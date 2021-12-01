@@ -1,115 +1,75 @@
 <!DOCTYPE html>
-<html lang="es">
-<%- include('../adminHead.ejs') %>
+<html lang="en">
+<!-- HEAD-->
+<%- include("../adminHead.ejs") %>
 
-<%- include('../partials/adminSidebar.ejs') %>
-    <body class="profile">
-        <%- include('../adminHeader.ejs') %>
+    <body>
+        <!-- dashboard admin -->
 
-            <div class="form-container">
-                <h2 class="perfile">Mis datos</h2>
-                <hr>
-                <form action="/users/profile/edit/<%= user.id %>?_method=PUT" method="POST"
-                    enctype="multipart/form-data">
-                    <div class="profile-box">
-                        <h3 class="profile-subtitle">Avatar</h3>
-                        <div class="avatar">
+            <div class="admin-content">
+                <%- include("../adminHeader.ejs") %>
 
-                        </div>
-                        <div class="input-file-container">
-                            <input type="file" name="avatar" id="">
-                        </div>
-                    </div>
-                    <div class="profile-form
-                    
-                    ">
-
-                        <div class="profile-box">
-                            <h3 class="profile-subtitle">Datos personales</h3>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">Email: </label>
-                                    <p>
-                                        <%= user.email %>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">Nombre: </label>
-                                    <input class="input-style" type="text" name="name" placeholder="Nombre"
-                                        value="<%= locals.old ? old.name : user.name %>">
-                                </div>
-                                <% if (locals.errors && errors.name) { %>
-                                    <small class="text-danger">
-                                        <%= errors.name.msg %>
-                                    </small>
-                                    <% } %>
-                            </div>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">Apellido: </label>
-                                    <input class="input-style" type="text" name="lastname" placeholder="Apellido"
-                                        value="<%= locals.old ? old.lastname : user.lastname %>">
-                                </div>
-                                <% if (locals.errors && errors.lastname) { %>
-                                    <small class="text-danger">
-                                        <%= errors.lastname.msg %>
-                                    </small>
-                                    <% } %>
-                            </div>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">DNI: </label>
-                                    <input class="input-style" type="number" name="dni" placeholder="DNI"
-                                        value="<%= user.dni ? user.dni : "------" %>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="profile-box">
-                            <h3 class="profile-subtitle">Datos de contacto</h3>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">Teléfono: </label>
-                                    <input class="input-style" type="tel" name="tel" placeholder="Teléfono"
-                                        value="<%= user.tel ? user.tel : "------" %>">
-                                </div>
-                            </div>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">Provincia: </label>
-                                    <select name="province" class="input-select" id="provinceList">
-                                        <option value="" hidden selected>Elija una provincia</option>
+                    <main>
+                        <h1>Editar usuario #<%= user.id %></h1>
+                        <form action="/admin/users/edit/<%=user.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                            <div class="form caja-agregar">
+                                Nombre:<label for="name"><input class="input style-admin" type="text" name="name"
+                                        id="name" placeholder="Nombre" value="<%= locals.old && old.name ? old.name : user.name %>" />
+                                        <% if (locals.errors && errors.name) { %>
+                                                <small class="text-danger"><%= errors.name.msg %> </small>
+                                        <% } %>
+                                </label>
+                                Apellido:<label for="last_name"><input class="input style-admin" type="text"
+                                        name="last_name" id="last-name" placeholder="Apellido"
+                                        value="<%= locals.old && old.lastname ? old.lastname : user.lastname %>" />
+                                        <% if (locals.errors && errors.lastname) { %>
+                                                <small class="text-danger"><%= errors.lastname.msg %> </small>
+                                        <% } %>
+                                </label>
+                                Email:<label for="email"><input class="input style-admin" type="text" name="email"
+                                        id="email" placeholder="Email" value="<%= locals.old && old.email ? old.email : user.email %>" />
                                         
+                                </label>
+                                Telefono:<label for="phone"><input class="input style-admin" type="text" name="phone"
+                                        id="phone" placeholder="Telefono" value="<%= user.tel %>" />
+                                </label>
+                                Direccion:<label for="address"><input class="input style-admin" type="text"
+                                        name="address" id="address" placeholder="Direccion"
+                                        value="<%= user.street %>" />
+                                </label>
+                                Rol:<label for="rol_id">
+                                    <select class="input style-admin" name="rol_id" id="rol_id">
+                                        <% if(session.user.rol==1) { %>
+                                            <option value="1" selected>Administrador</option>
+                                            <option value="0">Usuario</option>
+                                            <% } else { %>
+                                                <option value="1">Administrador</option>
+                                                <option value="0" selected>Usuario</option>
+                                                <% } %>
                                     </select>
-                                </div>
+                                </label>
+                                Provincia:<label for="province"><input class="input style-admin" type="text"
+                                        name="province" id="province" placeholder="Provincia"
+                                        value="<%= user.province %>" />
+                                </label>
+                                Ciudad:<label for="city"><input class="input style-admin" type="text" name="city"
+                                        id="city" placeholder="Ciudad" value="<%= user.location %>" />
+                                </label>
+                                Avatar:<label for="images-files"><input class="input style-admin" type="file" name="avatar"
+                                        id="images-files" placeholder="Avatar" value="<%= user.avatar %>" />
+                                </label>
+                                DNI:<label for="dni"><input class="input style-admin" type="text" name="dni" id="dni"
+                                        placeholder="DNI" value="<%= user.dni %>" />
+                                </label>                               
+                                <button type="submit" class="btn-admin style-admin">
+                                    GUARDAR
+                                </button>
                             </div>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">Localidad: </label>
-                                    <select name="location" class="input-select" id="citiesList">
-                                        <option value="" hidden selected>Elija una localidad</option>                                        
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-container">
-                                <div class="input-flex">
-                                    <label for="">Dirección: </label>
-                                    <input class="input-style" type="text" name="street" placeholder="Direccion"
-                                        value="<%= user.street ? user.street : "-------" %>">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="button-container">
-                        <a href="/users/profile"><div class="btn btn-cancelar">Cancelar</div></a>
-                        <button type="submit" class="btn btn-edit">Guardar</button>
-                    </div>
-                
-                </form>
+                        </form>
+                    </main>
             </div>
-            <%- include('../partials/adminScripts') %>
-
+            
+      
     </body>
 
 </html>

@@ -250,27 +250,14 @@ module.exports = {
       },
       categoryDestroy: (req, res) => {
         let subcategoriesDeleted = [];
-        subcategoriesDeleted.push(db.Subcategories.findAll({ where: { categories_id: req.params.id } }));
-        subcategoriesDeleted.forEach(subcategoryDeleted => {
-            db.Products.destroy({
-              where: {
-                id_subcategory: subcategoryDeleted.id
-              }
-            })
-        })
-        db.Subcategories.destroy({
-          where: {
-            categories_id: req.params.id,
-          },
-        }).then((result) => {
-          db.Category.destroy({
+        db.Category.destroy({
             where: {
               id: req.params.id,
             },
           }).then((result) => {
             return res.redirect("/admin/categories");
           });
-        });
+        
     },
 
     users: (req, res) => {
@@ -293,18 +280,9 @@ module.exports = {
         let errors = validationResult(req);
         if (errors.isEmpty()) {
             db.User.update(
-                {
-                    name: req.body.name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    phone: req.body.phone,
-                    address: req.body.address,
-                    rol_id: req.body.rol_id,
-                    province: req.body.province,
-                    city: req.body.city,
-                    avatar: req.file && req.file.filename,
-                    dni: req.body.dni,
-                    postalcode: req.body.postalcode
+                {                    
+                    rol: req.body.rol,                   
+                    
                 },
                 {
                     where: {

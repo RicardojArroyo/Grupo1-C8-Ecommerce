@@ -6,14 +6,10 @@
     
     <div class="container-fluid">
       <div class="row">
-        <%- include('../partials/adminSidebar') %>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2>Productos</h2>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group me-2">
-                <a href="/admin/users/create" class="btn btn-sm btn-outline-secondary">Agregar</a>
-              </div>
+            <div class="btn-toolbar mb-2 mb-md-0">              
             </div>
           </div>
           <div class="table-responsive">
@@ -40,7 +36,7 @@
                         <td><%- user.name%></td>
                         <td><%- user.lastname%></td>
                         <td><%- user.email%></td>
-                        <td><%- user.tel%></td>
+                        <td><%= user.tel%></td>
                         <td><%- user.street%></td>
                         <td><%- user.rol%></td>
                         <td><%- user.province%></td>
