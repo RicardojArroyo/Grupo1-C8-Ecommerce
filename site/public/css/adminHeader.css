@@ -30,3 +30,18 @@ header.admin-header .nav-admin a {
 header.admin-header .admin-li {
     margin: 0 25px;
 }
+@media (max-width: 480px) {    
+    header.admin-header .nav-admin {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        
+    }
+    
+    header.admin-header .nav-admin ul {
+        width: 15%;
+        display: flex;
+        flex-direction: row;
+        padding-left: 0px;
+    }
+}

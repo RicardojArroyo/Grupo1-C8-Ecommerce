@@ -42,6 +42,7 @@ footer .content .middle{
 }
 footer .content .middle a{
   line-height: 32px;
+  margin-left: -22px;
 }
 footer .content .right input[type="email"]{
   height: 45px;

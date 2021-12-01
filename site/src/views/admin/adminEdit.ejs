@@ -24,7 +24,7 @@
                 </div>
                 <div class="input-form">
                     <label for="discount">Descuento: </label>
-                    <input type="number" name="discount" id='discount' value="<%= locals.old && old.discount %>">
+                    <input type="number" name="discount" id='discount' value="<%= locals.old ? old.discount : product.discount %>">
                     <% if(locals.errors && errors.discount) { %>
                         <small class="error">
                             <%= errors.discount.msg %>

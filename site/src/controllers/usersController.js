@@ -13,6 +13,11 @@ module.exports = {
             session: req.session
         })  
     },
+    password: (req, res) => {
+        res.render('users/password', {
+            session: req.session
+        })  
+    },
     profile: (req, res) =>{
         db.User.findByPk(req.session.user.id).then(user => {
             res.render('users/userProfile', {
@@ -60,9 +65,18 @@ module.exports = {
             })
         }
     },
-    password: (req, res) => {
-        res.render('users/password')
-    },
+    deleteProfile: (req, res) => {
+        req.session.destroy();
+        if (req.cookies.usersimperio){
+          res.cookie("usersimperio",'',{maxAge:-1});
+        }
+        db.User.destroy({
+          where:{
+            id : req.params.id
+          }
+        })
+        return res.redirect('/') 
+      },
     processRegister: (req, res) => {
         let errors = validationResult(req)
         if (req.filevalidatorError) {

@@ -13,5 +13,6 @@ router.get('/comedor', cookieCheck, controller.comedor);
 router.get('/dormitorio', cookieCheck, controller.dormitorio);
 router.get('/living', cookieCheck, controller.living);
 router.get('/oficina', cookieCheck, controller.oficina);
+router.get('/search', controller.search); 
 
 module.exports = router;
