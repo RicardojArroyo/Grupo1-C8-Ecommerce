@@ -6,7 +6,8 @@
 }
 
 .form-container {
-    background: linear-gradient(rgb(8 1 1), rgb(14 105 96 / 56%));
+    border-color: black;
+    background: grey;
     border-radius: 10px;
     margin: o auto;
     width: 100%;
@@ -74,6 +75,7 @@ label {
     font-size: 1rem;
     margin-right: 5%;
     align-self: center;
+    color: white;
 }
 
 /*botones*/
