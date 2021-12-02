@@ -4,6 +4,7 @@
     <div class="logo">
       <a href="http://localhost:3000"><img src="/images/logo/logogoldtransp.png" alt=""></a>
     </div>
+   
 
     <i class="fas fa-bars burguer-menu-icon" onclick="dropMenu()"></i>
 
@@ -79,9 +80,11 @@
     </div>
 
     <!-- Buscador escritorio -->
-    <form action="/search" method="GET" id="search">
+    <form action="/search" method="GET" id="search" class="search-form-desktop">
+      <div class="search-bar">
       <input class="search" type="search" name="keywords" placeholder="Buscar productos, marcas y más" />
       <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
+      </div>
     </form>
 
     <div class="user-icons-desktop">
