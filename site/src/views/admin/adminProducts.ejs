@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-    <%- include ('../admin/adminHead.ejs') %>
+    <%- include('adminHead') %>
 <body>
-    <%- include ('../admin/adminHeader.ejs') %>
-    <main class="admin-main-product">
-        <div class="head-bar">
-            <h4>Lista de productos</h4>
-            <a href="/admin/create"><div class="add-button">Agregar</div></a>
-        </div>
+    <%- include('adminHeader') %>
+    
+    <div class="container-fluid">
+      <div class="row">
         
-        <table class="table table-dark table-striped">
-            <thead>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>Productos</h2>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                <a href="/admin/create" class="btn btn-sm btn-outline-secondary">Agregar</a>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Descuento</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Borrar</th>
+                  <th scope="col">id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">CategoryId</th>
+                  <th scope="col">Medidas</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Origen</th>
+                  <th scope="col">Descuento</th>
                 </tr>
-            </thead>
-            <tbody>
-                <% products.forEach(producto => { %>
+              </thead>
+              <tbody>
+                  <% products.forEach(product => { %>
                     <tr>
-                        <th scope="row"><%= producto.id %></th>
-                        <td><%= producto.productName %></td>
-                        <td><%= producto.category.name %></td>
-                        <td><%= producto.price %></td>
-                        <td><%= producto.discount %></td>
-                        <td><a href="/admin/edit/<%= producto.id %>"><div class="edit-button"><i class="fas fa-pen"></i></div></a></td>
+                        <td><%- product.id%></td>
+                        <td><%- product.productName%></td>
+                        <td><%- product.description%></td>
+                        <td><%- product.categoryId%></td>
+                        <td><%- product.measures%></td>
+                        <td><%- product.price%></td>
+                        <td><%- product.origin%></td>
+                        <td><%- product.discount%></td>
                         <td>
                             <form action="/admin/delete/<%= producto.id %>?_method=DELETE" method="POST">
                                 <button class="delete-button"><i class="fas fa-trash"></i></button>

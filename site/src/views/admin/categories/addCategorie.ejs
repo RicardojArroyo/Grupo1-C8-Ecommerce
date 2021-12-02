@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<%- include("../adminHead.ejs") %>
+
+    <body>
+        
+
+            <div class="admin-content">
+                <%- include("../adminHeader.ejs") %>
+                    <main>
+                        <h1>Agregar categoria</h1>
+                        <form action="/admin/categories/create" method="POST">
+                            <div class="form caja-agregar">
+                            Nombre:<label for="name-category"><input class="input style-admin" type="text"
+                                    name="name" id="name-category" required
+                                    placeholder="Nombre de la categoria" />
+                            </label>
+                            <button type="submit" class="btn-admin style-admin">
+                                CREAR
+                            </button>
+                            </div>
+                        </form>
+                    </main>
+            </div>
+    </body>
+
+</html>
