@@ -58,6 +58,7 @@
 }
 
 .img-sectionimp img{
+    object-fit: contain;
     width: 100%;
     height: 200px;
 }
@@ -145,14 +146,8 @@
     padding: 0px 3px;
     font-size: 18px;
 }
-.descripcionimp p {
-    animation-duration: 3s;
-    animation-name: slidein;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-  
-/*   @keyframes slidein {
+/*
+  @keyframes slidein {
     from {
       margin-left: 8%;
       width: 100%
@@ -163,4 +158,4 @@
       width: 150%;
     }
   }
- */
+*/

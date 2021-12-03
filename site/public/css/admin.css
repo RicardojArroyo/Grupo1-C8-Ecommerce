@@ -1,0 +1,165 @@
+/* DASHBOARD */
+
+body {
+    font-size: .875rem;
+  }
+  
+  .feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+  }
+  
+  /*
+   * Sidebar
+   */
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    /* rtl:raw:
+    right: 0;
+    */
+    bottom: 0;
+    /* rtl:remove */
+    left: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 48px 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  }
+  
+  @media (max-width: 767.98px) {
+    .sidebar {
+      top: 5rem;
+    }
+  }
+  
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  }
+  
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #727272;
+  }
+  
+  .sidebar .nav-link.active {
+    color: #2470dc;
+  }
+  
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+    color: inherit;
+  }
+  
+  .sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+  }
+
+  :root {
+    --primary: #003F49;
+    --secondary: #008489;
+    --tertiary: #F0BB3C;
+    --light-grey: #F5F5F5;
+    --grey: #7C7C7C;
+    --font_roboto: 'Roboto', sans-serif;
+} 
+
+.container-admin{
+    color: #003F49;
+    width: 80%;
+   margin: auto;
+}
+.form{
+    height:320px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center;
+}
+select{
+    color:#003F49
+}
+.input{
+
+    width: 100%;
+}
+
+.btn-admin{
+    width: 80px;
+}
+
+.style-admin{
+    
+    text-align: center;
+    height: 40px;
+    margin-top: 5px;
+    border: none;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    background: #003f490c;
+  
+}
+
+.style-admin:hover{
+    background: white;
+    border: 2px solid var(--tertiary);
+    transition:all 1s ease-in-out;
+
+    }
+  
+    h1{
+        font-size: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+    }
+    .caja-agregar{
+        width: 210px;
+        margin:auto;
+        height: 250px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+    
+  
+
+@media screen and (min-width:768px){
+    h1{
+        font-size: 25px;
+    }
+
+.input{
+    width: 350px;
+}
+
+}
+
+@media screen and (max-width:768px){
+    .form{
+        height:520px;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items:center;
+    }
+    h1{
+        font-size: 25px;
+        padding-bottom: 130px;
+    }
+
+.input{
+    width: 350px;
+}
+
+}
