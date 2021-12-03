@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let { register, login, profile, password, processRegister, processLogin, editProfile, updateProfile, logout, deleteProfile } = require('../controllers/usersController.js');
+let { register, login, profile, password, processRegister, processLogin, editProfile, updateProfile, logout, deleteProfile, addToCart, deleteProductCart } = require('../controllers/usersController.js');
 let loginValidator = require('../validations/loginValidator');
 let registerValidator = require('../validations/registerValidator');
 let uploadUsersAvatar = require('../middlewares/uploadUserAvatarFiles');
@@ -22,5 +22,11 @@ router.post('/login', loginValidator, processLogin);
 /* PUT */
 router.put('/profile/edit/:id', uploadUsersAvatar.single('avatar'), updateProfile)
 router.delete('/profile/delete/:id', deleteProfile)
+
+/* Ruta para añadir producto al carrito */
+router.get('/addToCart/:id', userSessionCheck, addToCart);
+
+/* Ruta para eliminar producto de carrito */
+router.delete('/deleteProductCart/:id', userSessionCheck, deleteProductCart);
 
 module.exports = router;

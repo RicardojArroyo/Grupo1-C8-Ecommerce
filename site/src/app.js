@@ -13,7 +13,6 @@ let indexRouter = require('./routes/index');
 let productRouter = require('./routes/product');
 let adminRouter = require('./routes/admin');
 let usersRouter = require('./routes/users');
-let apiRouter = require('./routes/apiRoutes.js');
 
 /* VIEWS */
 app.set('view engine', 'ejs');
@@ -37,7 +36,6 @@ app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use('/admin', adminRouter);
 app.use('/users', usersRouter);
-app.use('/api', apiRouter);
 
 //catch 404 and forward to error handler
 app.use(function(req, res, next) {

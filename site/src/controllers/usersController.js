@@ -158,5 +158,26 @@ module.exports = {
             res.cookie("usersimperio", "", {maxAge: -1})
         }
         res.redirect('/')
+    },
+    addToCart: (req, res) => {
+        /* console.log(req.params.id, req.session.userLogged.id) */
+        db.Cart.create({
+            userId: req.session.user.id,
+            productId: req.params.id,
+            quantity: 1
+        })
+        .then(() => {
+            res.redirect('/product/cart')
+        })
+    },
+    deleteProductCart: (req, res) => {
+        db.Cart.destroy({
+            where: {
+                productId: req.params.id
+            }
+        })
+        .then(() => {
+            res.redirect('/product/cart')
+        })
     } 
 }

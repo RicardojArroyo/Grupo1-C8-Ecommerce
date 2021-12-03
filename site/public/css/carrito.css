@@ -31,14 +31,19 @@ td input {
   padding: 5px;
 }
 
-td a.remove-product-cart {
-  color: red;
-  font-size: 12px;
+td button.remove-product-cart {
+  color: white;
+  background: red;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 9px;
+  padding: 2px;
 }
 
 td img {
   object-fit: contain;
   margin-right: 10px;
+  width: 80px;
 }
 
 .total-price {
@@ -84,4 +89,8 @@ tr.td-bold {
 
 .button-clean button {
   padding: 5px;
+}
+
+h2.no-products {
+  margin-bottom: 20%;
 }
