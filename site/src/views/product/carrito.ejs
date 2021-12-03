@@ -33,20 +33,21 @@
                       </div>
                     </div>
                   </td>
-                  <td><input type="number" value="1" /></td>
-                  <td>$50</td>
+                  <td><input type="number" value="1" min="1"/></td>
+                  <td>$<%- product.products.price %></td>
                 </tr>
+                <% cartPriceTotal = cartPriceTotal + product.products.price %>
               <% }) %>
         </table>
 
         <div class="total-price">
           <div class="button-clean">
-            <button type="button">Vaciar Carito</button>
+            <button type="button" style="display: none;">Vaciar Carito</button>
           </div>
           <table>
             <tr class="td-bold">
               <td>Total</td>
-              <td>$200</td>
+              <td>$<%- cartPriceTotal %></td>
             </tr>
           </table>
         </div>
