@@ -180,4 +180,4 @@ module.exports = {
             res.redirect('/product/cart')
         })
     } 
-}
+} 

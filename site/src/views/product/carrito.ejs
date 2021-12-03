@@ -25,15 +25,20 @@
                         </p>
                         <small> $<%- product.products.price %> </small>
                         <br>
-                        <form action="/users/deleteProductCart/<%- product.products.id %>?_method=DELETE" method="POST">
+                        <form action="/users/deleteProductCart/<%- product.products.id %>?_method=DELETE" method="POST" style="display: inline;">
                           <button class="remove-product-cart" type="submit">
                             Eliminar
                           </button>
                         </form>
+                        <a href="/product/detail/<%= product.products.id %>">
+                          <button class="detail-product-cart" type="submit">
+                            Detalle
+                          </button>
+                        </a>
                       </div>
                     </div>
                   </td>
-                  <td><input type="number" value="1" min="1"/></td>
+                  <td><input type="number" min="1" max="1" id="1" value="1"/></td>
                   <td>$<%- product.products.price %></td>
                 </tr>
                 <% cartPriceTotal = cartPriceTotal + product.products.price %>
@@ -42,7 +47,9 @@
 
         <div class="total-price">
           <div class="button-clean">
-            <button type="button" style="display: none;">Vaciar Carito</button>
+            <a href="/productos">
+              <button type="button">Seguir comprando</button>
+            </a>
           </div>
           <table>
             <tr class="td-bold">
@@ -51,9 +58,11 @@
             </tr>
           </table>
         </div>
-        <div class="button-confirm">
-          <button type="button">Confirmar compra</button>
-        </div>
+        <form action="/product/cart/success/?_method=DELETE" method="POST">
+          <div class="button-confirm">
+            <button type="submit">Confirmar compra</button>
+          </div>
+        </form>
       </div>
       <% } else { %>
         <h2 class="no-products">No hay productos en su carrito</h2>
