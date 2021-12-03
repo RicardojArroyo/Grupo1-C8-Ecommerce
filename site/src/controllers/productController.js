@@ -71,7 +71,22 @@ module.exports = {
               session : req.session.user ? req.session.user : ''
           })
       })
-  },
+    },
+    success: (req, res) => {
+      db.Cart.destroy({
+          where: {
+              userId: req.session.user.id
+          }
+      })
+      .then(() => {
+          res.render('product/success', {
+            
+            session: req.session.user ? req.session.user : ''
+          })
+      })
+  }
+
+    
 
     
 }
