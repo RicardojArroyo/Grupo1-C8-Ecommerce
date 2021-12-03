@@ -1,13 +1,13 @@
 let express = require('express');
 let router = express.Router();
-let { detail, carrito, category, cocina, comedor } = require('../controllers/productController.js');
+let { detail, cart, category } = require('../controllers/productController.js');
 let userSessionCheck = require('../middlewares/userSessionCheck');
 
 /* GET - Detalle del producto elegido */
 router.get('/detail/:id', detail);
 
 /* GET - carrito */
-router.get('/carrito',userSessionCheck ,carrito);
+router.get('/cart', userSessionCheck, cart);
 
 /* GET - Lista productos de categorias */
 router.get('/category/:id', category);

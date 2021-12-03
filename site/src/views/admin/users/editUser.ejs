@@ -54,7 +54,7 @@
                                 Ciudad:<label for="city"><input readonly class="input style-admin" type="text" name="city"
                                         id="city" placeholder="Ciudad" value="<%= user.location %>" />
                                 </label>
-                                Avatar:<label for="images-files"><input readonly class="input style-admin" type="file" name="avatar"
+                                Avatar:<label for="images-files"><input readonly disabled class="input style-admin" type="file" name="avatar"
                                         id="images-files" placeholder="Avatar" value="<%= user.avatar %>" />
                                 </label>
                                 DNI:<label for="dni"><input readonly class="input style-admin" type="text" name="dni" id="dni"
@@ -62,6 +62,9 @@
                                 </label>                               
                                 <button type="submit" class="btn-admin style-admin">
                                     GUARDAR
+                                </button>
+                                <button class="btn-admin style-admin">
+                                        <a href="/admin/users" style="text-decoration: none; color: black;">CANCELAR</a>
                                 </button>
                             </div>
                         </form>

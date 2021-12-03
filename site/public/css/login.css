@@ -98,6 +98,13 @@
         margin: auto;
     }
 
+    .login .card {
+        margin: 50px 20px;
+    }
+
+    .login .card__input {
+        width: 80%;
+    }
 }
 .login label.recordar {
     flex-direction: row;

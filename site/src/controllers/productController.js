@@ -11,11 +11,6 @@ module.exports = {
     })
   },
 
-    carrito: (req, res) => {
-      res.render('product/carrito', {
-        session: req.session
-      })
-  },
   category: (req, res) => {
         
     db.Category.findOne({
@@ -62,10 +57,21 @@ module.exports = {
                 session: req.session
           });
       }) 
-    }
-      /* let producto = getProducts.find(producto => {
-        return producto.id === +req.params.id
+    },
+    cart: (req, res) => {
+      db.Cart.findAll({
+          where: {
+              userId: req.session.user.id
+          },
+          include: [{association: "products", include: [{association: "images"}]}, {association: "users"}]
       })
-      res.render('product/productDetail', { producto: producto, session: req.session })
-    } */
+      .then(cart => {
+          res.render('product/carrito', {
+              cart,
+              session : req.session.user ? req.session.user : ''
+          })
+      })
+  },
+
+    
 }
