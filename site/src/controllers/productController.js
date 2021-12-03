@@ -1,5 +1,6 @@
 let db = require('../database/models');
 const { Op } = require("sequelize");
+let axios = require('axios')
 
 module.exports = {
    productDetail: (req, res) => {
@@ -11,13 +12,6 @@ module.exports = {
     })
   },
 
- 
-
-    carrito: (req, res) => {
-      res.render('product/carrito', {
-        session: req.session
-      })
-  },
   category: (req, res) => {
         
     db.Category.findOne({
@@ -64,6 +58,29 @@ module.exports = {
                 session: req.session
           });
       }) 
+    },
+
+    carrito: (req, res) => {
+      let user = req.session.user.id
+      axios({
+        method: 'get',
+        url: `http://localhost:3000/api/cart/${user}`,
+      })
+      .then(response =>{
+        let products = response.data.data?.order_items.map(item => {
+          return {
+            ...item.products,
+            quantity: item.quantity
+          }
+        })
+        res.render('product/carrito', {
+          session: req.session,
+          products: products !== undefined ? products : [],
+          user: req.session.user?.id || null
+        })}
+        
+      )
+      .catch(error => res.send(error))
     }
       /* let producto = getProducts.find(producto => {
         return producto.id === +req.params.id

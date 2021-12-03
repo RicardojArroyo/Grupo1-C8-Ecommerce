@@ -7,7 +7,7 @@ let userSessionCheck = require('../middlewares/userSessionCheck');
 router.get('/detail/:id', detail);
 
 /* GET - carrito */
-router.get('/carrito',userSessionCheck ,carrito);
+router.get('/carrito', userSessionCheck, carrito);
 
 /* GET - Lista productos de categorias */
 router.get('/category/:id', category);
