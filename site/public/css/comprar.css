@@ -1,0 +1,35 @@
+.comprar {
+    padding: 10% 25%;
+}
+
+.comocomprar {
+    border: rgb(163, 163, 163) solid 1px;
+    border-radius: 10px;
+}
+
+.comocomprar h1 {
+    text-align: center;
+    padding: 0;
+    background-color: black;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+.comocomprar h2 {
+    text-align: center;
+    padding: 0;
+    color: rgb(243, 221, 19);
+    background-color:black;
+    margin: 0;
+       
+}
+.comocomprar ul li {
+   padding: 10px;
+   margin-left: 10%;
+   font-weight: bold;
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+    .comprar {
+        padding: 1% 5%;
+    }
+}
